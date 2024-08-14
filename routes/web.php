@@ -21,14 +21,17 @@ Route::middleware([
 
     // System Admin Route
     Route::get('/requirement-details', function () {
+        if (Auth::user()->usertype == 'admin') {
         return view('appealEase.systemAdmin.requirement-details.main');
+        }
     })->name('requirement-details');
     Route::get('/admin-management', function () {
+        if (Auth::user()->usertype == 'admin') {
         return view('appealEase.systemAdmin.admin-management.main');
+        }
     })->name('admin-management');
-
     Route::post('/admin-management', [RegisteredUserController::class, 'store']);
-    // Route::post('/admin-management', [RegisteredUserController::class, 'create']);
+        // Route::post('/admin-management', [RegisteredUserController::class, 'create']);
 
     // CAMIS Route
 

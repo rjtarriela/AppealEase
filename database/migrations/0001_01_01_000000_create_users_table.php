@@ -21,6 +21,12 @@ return new class extends Migration
             // Change usertype to ENUM
             $table->enum('usertype', ['admin', 'camis', 'clerk', 'judge'])->default('admin');
 
+            // Add contact_number as a string with a max length of 11
+            $table->string('contact_number', 11)->nullable();
+
+            // Add division as a tinyInteger
+            $table->tinyInteger('division')->nullable();
+
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
