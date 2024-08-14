@@ -27,6 +27,10 @@ return new class extends Migration
             // Add division as a tinyInteger
             $table->tinyInteger('division')->nullable();
 
+            $table->integer('criminal_cases_solved')->default(0);
+            $table->integer('civil_cases_solved')->default(0);
+            $table->integer('special_cases_solved')->default(0);
+
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

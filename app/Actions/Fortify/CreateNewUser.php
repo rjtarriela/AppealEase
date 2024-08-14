@@ -36,6 +36,9 @@ class CreateNewUser implements CreatesNewUsers
             'usertype' => $input['usertype'],
             'contact_number' => $input['usertype'] === 'judge' ? $input['contact_number'] : null,
             'division' => $input['usertype'] === 'judge' ? $input['division'] : null,
+            'criminal_cases_solved' => 0,
+            'civil_cases_solved' => 0,
+            'special_cases_solved' => 0,
         ]);
     }
 }

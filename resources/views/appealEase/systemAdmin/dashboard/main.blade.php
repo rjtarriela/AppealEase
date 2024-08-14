@@ -46,8 +46,19 @@
 
         <!-- Page Content -->
         <main>
+            {{-- Popup Message --}}
+            @if (session('success'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        alert('{{ session('success') }}');
+                    });
+                </script>
+            @endif
 
-            
+            <div class="mx-5 my-3">
+                @include('appealEase.systemAdmin.dashboard.judgeTable', ['judges' => $judges])
+                @include('appealEase.systemAdmin.dashboard.editJudgeTable')
+            </div>
 
         </main>
     </div>
@@ -55,6 +66,27 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                var id = $(this).data('id');
+                var division = $(this).data('division');
+                var name = $(this).data('name');
+                var email = $(this).data('email');
+                var contact = $(this).data('contact');
+
+                $('#editId').val(id);
+                $('#editDivision').val(division);
+                $('#editName').val(name);
+                $('#editEmail').val(email);
+                $('#editContact').val(contact);
+
+                $('#editForm').attr('action', '/dashboard/' + id);
+                $('#editJudgeTableModal').modal('show');
+            });
+        });
+    </script>
 </body>
 
 </html>

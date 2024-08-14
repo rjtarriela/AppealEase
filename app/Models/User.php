@@ -30,6 +30,9 @@ class User extends Authenticatable
         'usertype',
         'contact_number',
         'division', 
+        'criminal_cases_solved',
+        'civil_cases_solved',
+        'special_cases_solved',
     ];
 
     /**
