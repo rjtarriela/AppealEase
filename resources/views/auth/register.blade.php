@@ -20,6 +20,17 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="usertype" value="{{ __('User Type') }}" />
+                <select id="usertype" name="usertype" class="block mt-1 w-full" required>
+                    <option value="admin">ADMIN</option>
+                    <option value="camis">CAMIS</option>
+                    <option value="clerk">CLERK</option>
+                    <option value="division">DIVISION</option>
+                    <!-- Add other user types as needed -->
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
