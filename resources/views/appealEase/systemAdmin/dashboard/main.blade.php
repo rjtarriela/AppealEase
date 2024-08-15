@@ -29,6 +29,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="/css/app.css" rel="stylesheet">
+    {{-- TABLE SCRIPT FOR SEARCH, ENTITIES, NEXT AND PREV --}}
+    <script>
+        $(document).ready(function() {
+            $('#judgesTable').DataTable();
+        });
+    </script>
 </head>
 
 <body class="font-sans antialiased">
@@ -55,7 +61,7 @@
                 </script>
             @endif
 
-            <div class="mx-5 my-3">
+            <div class="mx-3 my-3">
                 @include('appealEase.systemAdmin.dashboard.judgeTable', ['judges' => $judges])
                 @include('appealEase.systemAdmin.dashboard.editJudgeTable')
             </div>

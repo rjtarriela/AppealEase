@@ -34,3 +34,26 @@
     padding-right: 20px; /* Adjust the padding to fit the dropdown icon */
     background-position: right 3px center; /* Position the icon */
 }
+
+/* Table sa requirement-details */
+#specialTable th, #specialTable td, #civilTable th, #civilTable td, #criminalTable th, #criminalTable td {
+    width: 20%;
+}
+
+#specialTable th:nth-child(2), #specialTable td:nth-child(2), #civilTable th:nth-child(2), #civilTable td:nth-child(2), #criminalTable th:nth-child(2), #criminalTable td:nth-child(2) {
+    width: 30%;
+}
+
+#specialTable th:nth-child(3), #specialTable td:nth-child(3), #civilTable th:nth-child(3), #civilTable td:nth-child(3), #criminalTable th:nth-child(3), #criminalTable td:nth-child(3) {
+    width: 30%;
+}
+
+#specialTable th:nth-child(4), #specialTable td:nth-child(4), #civilTable th:nth-child(4), #civilTable td:nth-child(4), #criminalTable th:nth-child(4), #criminalTable td:nth-child(4) {
+    width: 20%;
+}
+
+#specialTable td, #criminalTable td, #civilTable td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: adds "..." for overflowed text */
+}

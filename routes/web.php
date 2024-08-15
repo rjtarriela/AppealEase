@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaseRequirementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JudgeController;
 use Illuminate\Support\Facades\Auth;
@@ -21,20 +22,18 @@ Route::middleware([
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     // System Admin Route
-    Route::get('/requirement-details', function () {
-        if (Auth::user()->usertype == 'admin') {
-            return view('appealEase.systemAdmin.requirement-details.main');
-        }
-    })->name('requirement-details');
+    Route::put('/dashboard/{id}', [JudgeController::class, 'update']);
+    Route::delete('/dashboard/{id}', [JudgeController::class, 'destroy']);
+    Route::get('/requirement-details', [CaseRequirementController::class, 'index'])->name('requirement-details');
+    Route::post('/requirement-details/submit', [CaseRequirementController::class, 'store']);
+    Route::put('/requirement-details/{id}', [CaseRequirementController::class, 'update']);
+    Route::delete('/requirement-details/{id}', [CaseRequirementController::class, 'destroy']);
     Route::get('/admin-management', function () {
         if (Auth::user()->usertype == 'admin') {
             return view('appealEase.systemAdmin.admin-management.main');
         }
     })->name('admin-management');
     Route::post('/admin-management', [RegisteredUserController::class, 'store']);
-    // Route::post('/admin-management', [RegisteredUserController::class, 'create']);
-    Route::put('/dashboard/{id}', [JudgeController::class, 'update']);
-    Route::delete('/dashboard/{id}', [JudgeController::class, 'destroy']);
 
     // CAMIS Route
 

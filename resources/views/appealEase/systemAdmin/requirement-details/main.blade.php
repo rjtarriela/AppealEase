@@ -29,6 +29,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="/css/app.css" rel="stylesheet">
+    {{-- TABLE SCRIPT FOR SEARCH, ENTITIES, NEXT AND PREV --}}
+    <script>
+        $(document).ready(function() {
+            $('#civilTable').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#criminalTable').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#specialTable').DataTable();
+        });
+    </script>
 </head>
 
 <body class="font-sans antialiased">
@@ -46,8 +62,20 @@
 
         <!-- Page Content -->
         <main>
-
+            {{-- Popup Message --}}
+            @if (session('success'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        alert('{{ session('success') }}');
+                    });
+                </script>
+            @endif
+            <div class="container my-3">
+                <div class="mb-3">@include('appealEase.systemAdmin.requirement-details.addRequirements')</div>
             
+            @include('appealEase.systemAdmin.requirement-details.caseRequirementTabs') 
+            @include('appealEase.systemAdmin.requirement-details.editRequirements')
+            </div>
 
         </main>
     </div>
@@ -55,6 +83,23 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                var id = $(this).data('id');
+                var requirement_name = $(this).data('requirement_name');
+                var description = $(this).data('description');
+
+                $('#editId').val(id);
+                $('#editRequirementName').val(requirement_name);
+                $('#editDescription').val(description);
+
+                $('#editForm').attr('action', '/requirement-details/' + id);
+                $('#editRequirementDetails').modal('show');
+            });
+        });
+    </script>
 </body>
 
 </html>
