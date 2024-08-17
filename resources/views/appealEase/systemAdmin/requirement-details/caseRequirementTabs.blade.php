@@ -1,12 +1,12 @@
 <ul class="nav nav-tabs justify-content-around" role="tablist">
     <li class="nav-item flex-grow-1 text-center">
-        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Civil Cases</a>
+        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Civil Case Requirements</a>
     </li>
     <li class="nav-item flex-grow-1 text-center">
-        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Criminal Cases</a>
+        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Criminal Case Requirements</a>
     </li>
     <li class="nav-item flex-grow-1 text-center">
-        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Special Cases</a>
+        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Special Case Requirements</a>
     </li>
 </ul>
 <!-- Tab panes -->
