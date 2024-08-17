@@ -22,12 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($cases->isEmpty())
+                @if ($status->isEmpty())
                     <tr>
                         <td colspan="6" class="text-center">No records of cases</td>
                     </tr>
                 @else
-                    @foreach ($cases as $case)
+                    @foreach ($status as $case)
                         <tr class="text-center">
                             <td class="align-content-center">{{ $case->case_number }}</td>
                             {{-- <td class="align-content-center">{{ $case->case_type }}</td> --}}
@@ -40,9 +40,9 @@
                                     $requirements = json_decode($case->case_requirement, true);
                                 @endphp
                                 @if (!empty($requirements))
-                                    @foreach ($requirements as $requirement)
-                                        <p style="margin-top: 16px">{{ $requirement }}</p>
-                                    @endforeach
+                                        @foreach ($requirements as $requirement)
+                                            <p style="margin-top: 16px">{{ $requirement }}</p>
+                                        @endforeach
                                 @else
                                     No requirements
                                 @endif
@@ -50,19 +50,14 @@
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Send Button - No function yet --}}
-                                <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    <button class="btn btn-outline-success edit-btn" type="submit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                            viewBox="0 0 100 100">
-                                            <path d="M20 20 L80 50 L20 80 Z" fill="none" stroke="green"
-                                                stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </button>
-                                </form>
-                                <form action="{{ url('/dashboard/camis/' . $case->id) }}" method="POST"
-                                    style="display:inline;">
+                                {{-- <button class="btn btn-outline-success edit-btn" data-id="{{ $case->id }}"
+                                    data-division="{{ $case->division }}" data-name="{{ $case->name }}"
+                                    data-email="{{ $case->email }}" data-contact="{{ $case->contact_number }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 100 100">
+                                        <path d="M20 20 L80 50 L20 80 Z" fill="none" stroke="green" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                </button>
+                                <form action="{{ url('/dashboard/camis/' . $case->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger">
@@ -72,7 +67,7 @@
                                                 d="M9 3V4H4V6H20V4H15V3H9zM7 6V20C7 21.1046 7.89543 22 9 22H15C16.1046 22 17 21.1046 17 20V6H7zM9 8H11V19H9V8zM13 8H15V19H13V8z" />
                                         </svg>
                                     </button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

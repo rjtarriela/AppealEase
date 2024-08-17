@@ -47,6 +47,7 @@
         <!-- Page Content -->
         <main>
 
+            @include('appealEase.clerkUser.dashboard.clerkTable')
 
         </main>
     </div>

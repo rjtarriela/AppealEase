@@ -23,11 +23,13 @@ class HomeController extends Controller
         $specialRequirements = Requirement::where('case_type', 'special')->get();
         $cases = CaseModel::all();
 
+        $status = CaseModel::where('status', 'sent')->get();
+
         if (Auth::user()->usertype == 'camis') {
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases'));
             // return view('appealEase.user.main', compact('judges'));
         } else if (Auth::user()->usertype == 'clerk') {
-            return view('appealEase.clerkUser.main');
+            return view('appealEase.clerkUser.dashboard.main', compact('status'));
         } else if (Auth::user()->usertype == 'judge') {
             return view('appealEase.divisionUser.dashboard');
         } else {

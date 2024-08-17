@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('case_court');
             $table->string('case_judge');
             $table->json('case_requirement'); // Store requirements as a JSON array
+            $table->enum('status', ['pending', 'sent', 'received'])->default('pending');
             $table->timestamps();
         });
     }

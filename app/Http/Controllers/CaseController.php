@@ -30,4 +30,13 @@ class CaseController extends Controller
 
         return redirect('/dashboard')->with('success', 'Case deleted successfully!');
     }
+
+    public function send($id)
+    {
+        $case = CaseModel::findOrFail($id);
+        $case->status = 'sent'; // Assuming you have a status column in your cases table
+        $case->save();
+
+        return redirect('/dashboard')->with('success', 'Case sent successfully!');
+    }
 }
