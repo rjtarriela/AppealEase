@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\CaseRequirementController;
+use App\Http\Controllers\ClerkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JudgeController;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +40,15 @@ Route::middleware([
     // CAMIS Route
     Route::post('/dashboard/camis/submit', [CaseController::class, 'store']);
     Route::delete('/dashboard/camis/{id}', [CaseController::class, 'destroy']);
+    // routes/web.php
+    Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
 
     // CLERK Route
+    
+    // routes/web.php
+    // Route::post('/clerk/cases/{case_number}/receive', [ClerkController::class, 'markAsReceived'])->name('clerk.cases.receive');
+
+
 
     // Division Route
 });
