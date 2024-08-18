@@ -44,6 +44,7 @@ Route::middleware([
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
 
     // CLERK Route
+    Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomJudge']);
     
     // routes/web.php
     // Route::post('/clerk/cases/{case_number}/receive', [ClerkController::class, 'markAsReceived'])->name('clerk.cases.receive');
