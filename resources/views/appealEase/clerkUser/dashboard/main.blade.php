@@ -47,6 +47,15 @@
         <!-- Page Content -->
         <main>
 
+            {{-- Popup Message --}}
+            @if (session('success'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        alert('{{ session('success') }}');
+                    });
+                </script>
+            @endif
+
             @include('appealEase.clerkUser.dashboard.clerkTable')
 
         </main>

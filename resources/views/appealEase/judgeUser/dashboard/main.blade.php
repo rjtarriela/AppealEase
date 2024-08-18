@@ -47,7 +47,7 @@
         <!-- Page Content -->
         <main>
 
-            @include('appealEase.systemAdmin.admin-management.register')
+            @include('appealEase.judgeUser.dashboard.judgeTable')
 
         </main>
     </div>

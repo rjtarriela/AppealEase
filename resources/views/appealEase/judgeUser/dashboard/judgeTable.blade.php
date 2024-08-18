@@ -22,12 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($status->isEmpty())
+                @if ($cases->isEmpty())
                     <tr>
                         <td colspan="6" class="text-center">No records of cases</td>
                     </tr>
                 @else
-                    @foreach ($status as $case)
+                    @foreach ($cases as $case)
                         <tr class="text-center">
                             <td class="align-content-center">{{ $case->case_number }}</td>
                             {{-- <td class="align-content-center">{{ $case->case_type }}</td> --}}
@@ -49,15 +49,7 @@
                             </td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->
-                                {{-- Send Button Randomized - No function yet --}}
-                                <form action="{{ url('/dashboard/cases/randomize/' . $case->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-success edit-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 100 100">
-                                            <path d="M20 20 L80 50 L20 80 Z" fill="none" stroke="green" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
-                                </form>
+                                {{-- Check and X Button - Cogie ikaw na bahala --}}
                             </td>
                         </tr>
                     @endforeach
