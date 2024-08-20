@@ -30,6 +30,14 @@
     background-color: #d3d3d3; /* Light gray background */
 }
 
+.btn-outline-info:hover {
+    background-color: #d3d3d3; /* Light gray background */
+}
+
+.btn-outline-primary:hover {
+    background-color: #d3d3d3; /* Light gray background */
+}
+
 .dataTables_wrapper .dataTables_length select {
     padding-right: 20px; /* Adjust the padding to fit the dropdown icon */
     background-position: right 3px center; /* Position the icon */

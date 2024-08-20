@@ -50,14 +50,7 @@
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Check and X Button - Cogie ikaw na bahala --}}
-
                                 @include('appealEase.judgeUser.dashboard.check')
-
-
-
-                                @include('appealEase.judgeUser.dashboard.notcheck')
-
-
                             </td>
                         </tr>
                     @endforeach

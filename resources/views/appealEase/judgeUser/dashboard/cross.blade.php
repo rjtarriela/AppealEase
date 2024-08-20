@@ -1,5 +1,5 @@
 {{-- MODAL FOR ADD BUTTON --}}
-<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#checkModal">
+<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#crossModal">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="green"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
         <path d="M20 6L9 17l-5-5" />
@@ -7,7 +7,7 @@
 </button>
 
 <!-- The Modal -->
-<div class="modal" id="checkModal">
+<div class="modal" id="crossModal">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
