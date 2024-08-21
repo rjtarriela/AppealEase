@@ -3,8 +3,8 @@
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\CaseRequirementController;
 use App\Http\Controllers\ClerkController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JudgeController;
+use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
@@ -21,25 +21,25 @@ Route::middleware([
 ])->group(function () {
 
     // Home Route
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [LinkController::class, 'nav1'])->name('dashboard');
 
     // System Admin Route
     Route::put('/dashboard/{id}', [JudgeController::class, 'update']);
     Route::delete('/dashboard/{id}', [JudgeController::class, 'destroy']);
-    Route::get('/requirement-details', [CaseRequirementController::class, 'index'])->name('requirement-details');
+
+    Route::get('/requirement-details', [LinkController::class, 'nav2'])->name('requirement-details');
     Route::post('/requirement-details/submit', [CaseRequirementController::class, 'store']);
     Route::put('/requirement-details/{id}', [CaseRequirementController::class, 'update']);
     Route::delete('/requirement-details/{id}', [CaseRequirementController::class, 'destroy']);
-    Route::get('/admin-management', function () {
-        if (Auth::user()->usertype == 'admin') {
-            return view('appealEase.systemAdmin.admin-management.main');
-        }
-    })->name('admin-management');
+
+    Route::get('/admin-management', [LinkController::class, 'nav3'])->name('admin-management');
     Route::post('/admin-management', [RegisteredUserController::class, 'store']);
 
     // CAMIS Route
     Route::post('/dashboard/camis/submit', [CaseController::class, 'store']);
     Route::delete('/dashboard/camis/{id}', [CaseController::class, 'destroy']);
+    Route::get('/approved-cases', [LinkController::class, 'nav2'])->name('approved-cases');
+    Route::get('/denied-cases', [LinkController::class, 'nav3'])->name('denied-cases');
     // routes/web.php
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
 

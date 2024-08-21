@@ -9,15 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class CaseRequirementController extends Controller
 {
     //
-    public function index(){
-        if (Auth::user()->usertype == 'admin') {
-        $civilRequirements = Requirement::where('case_type', 'civil')->get();
-        $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
-        $specialRequirements = Requirement::where('case_type', 'special')->get();
-
-        return view('appealEase.systemAdmin.requirement-details.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements'));
-        }
-    }
     public function store(Request $request)
     {
         $requirement = new Requirement();

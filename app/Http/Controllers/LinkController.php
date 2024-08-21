@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseModel;
-use App\Models\Judge;
 use App\Models\Requirement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
-class HomeController extends Controller
+class LinkController extends Controller
 {
-    //
-    public function index()
+    //CAMIS
+    public function nav1()
     {
         if (Auth::user()->usertype == 'camis') {
             $civilRequirements = Requirement::where('case_type', 'civil')->get();
@@ -33,6 +30,28 @@ class HomeController extends Controller
         } else {
             $judges = User::where('usertype', 'judge')->get();
             return view('appealEase.systemAdmin.dashboard.main', compact('judges'));
+        }
+    }
+
+    public function nav2()
+    {
+        if (Auth::user()->usertype == 'camis') {
+            return view('appealEase.camisUser.approvedCases.main');
+        } else if (Auth::user()->usertype == 'admin') {
+            $civilRequirements = Requirement::where('case_type', 'civil')->get();
+            $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
+            $specialRequirements = Requirement::where('case_type', 'special')->get();
+
+            return view('appealEase.systemAdmin.requirement-details.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements'));
+        }
+    }
+
+    public function nav3()
+    {
+        if (Auth::user()->usertype == 'camis') {
+            return view('appealEase.camisUser.deniedCases.main');
+        } else if (Auth::user()->usertype == 'admin') {
+            return view('appealEase.systemAdmin.admin-management.main');
         }
     }
 }

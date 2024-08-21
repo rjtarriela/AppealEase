@@ -8,12 +8,12 @@
 
 <!-- The Modal -->
 <div class="modal" id="checkModal">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Case Appeal: Successfully!</h4>
+                <h4 class="modal-title">Case Appeal: Successful!</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 

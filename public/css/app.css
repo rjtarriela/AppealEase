@@ -24,6 +24,7 @@
 
 .btn-outline-success:hover {
     background-color: #d3d3d3; /* Light gray background */
+    color: green;
 }
 
 .btn-outline-danger:hover {
