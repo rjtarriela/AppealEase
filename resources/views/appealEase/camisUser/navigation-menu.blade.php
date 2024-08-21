@@ -15,8 +15,14 @@
                     <x-nav-link id="nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link id="nav-link" href="{{ route('approved-cases') }}" :active="request()->routeIs('approved-cases')">
+                        Approved Cases
+                    </x-nav-link>
+                    <x-nav-link id="nav-link" href="{{ route('denied-cases') }}" :active="request()->routeIs('denied-cases')">
+                        Denied Cases
+                    </x-nav-link>
                 </div>
-                
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -97,7 +103,7 @@
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
-                            </div>  
+                            </div>
 
                             <x-dropdown-link id="nav-link" href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}

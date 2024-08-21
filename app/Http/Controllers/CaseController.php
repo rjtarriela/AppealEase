@@ -57,4 +57,7 @@ class CaseController extends Controller
         // Return back to the dashboard with a success message
         return redirect('/dashboard')->with('success', 'Case assigned successfully!');
     }
+    public function index(){
+        return view('appealEase.camisUser.approveCases.main');
+        }
 }

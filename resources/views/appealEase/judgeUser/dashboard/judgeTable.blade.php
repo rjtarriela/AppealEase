@@ -51,6 +51,7 @@
                                 <!-- Action buttons -->
                                 {{-- Check and X Button - Cogie ikaw na bahala --}}
                                 @include('appealEase.judgeUser.dashboard.check')
+                                @include('appealEase.judgeUser.dashboard.cross')
                             </td>
                         </tr>
                     @endforeach

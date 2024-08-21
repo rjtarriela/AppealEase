@@ -8,12 +8,12 @@
 
 <!-- The Modal -->
 <div class="modal" id="checkModal">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-l">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Case Appeal: Successfully!</h4>
+                <h4 class="modal-title">Case Appeal: Successful!</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -21,11 +21,11 @@
             <div class="modal-body">
                 <form>
                     @csrf
-                    <div class="mb-3 row">
-                        <label for="remarks" class="col-sm-2 col-form-label text-start">Remarks:</label>
-                        <div class="col-sm-10">
-                            <textarea id="remarks" name="remarks" class="form-control" rows="4" placeholder="Enter your remarks here..."></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="remarks" class="form-label text-start" style="text-align: left; display: block;">
+                            Remarks:
+                        </label>
+                        <textarea class="form-control" id="remarks" rows="4" placeholder="Enter your remarks here..."></textarea>
                     </div>
 
                     <!-- Modal footer -->

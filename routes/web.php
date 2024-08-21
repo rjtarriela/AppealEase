@@ -40,12 +40,22 @@ Route::middleware([
     // CAMIS Route
     Route::post('/dashboard/camis/submit', [CaseController::class, 'store']);
     Route::delete('/dashboard/camis/{id}', [CaseController::class, 'destroy']);
+    Route::get('/approved-cases', function () {
+        if (Auth::user()->usertype == 'camis') {
+            return view('appealEase.camisUser.approveCases.main');
+        }
+    })->name('approved-cases');
+    Route::get('/denied-cases', function () {
+        if (Auth::user()->usertype == 'camis') {
+            return view('appealEase.camisUser.deniedCases.main');
+        }
+    })->name('denied-cases');
     // routes/web.php
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
 
     // CLERK Route
     Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomJudge']);
-    
+
     // routes/web.php
     // Route::post('/clerk/cases/{case_number}/receive', [ClerkController::class, 'markAsReceived'])->name('clerk.cases.receive');
 
