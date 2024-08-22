@@ -51,5 +51,7 @@ Route::middleware([
 
 
 
-    // Division Route
+    // JUDGE Route
+    Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
+    Route::post('/dashboard/judge-denied/{id}', [CaseController::class, 'denied']);
 });
