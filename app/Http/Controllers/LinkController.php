@@ -36,7 +36,8 @@ class LinkController extends Controller
     public function nav2()
     {
         if (Auth::user()->usertype == 'camis') {
-            return view('appealEase.camisUser.approvedCases.main');
+            $cases = CaseModel::where('approvalStatus', 'approved')->get();
+            return view('appealEase.camisUser.approvedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {
             $civilRequirements = Requirement::where('case_type', 'civil')->get();
             $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
@@ -49,7 +50,8 @@ class LinkController extends Controller
     public function nav3()
     {
         if (Auth::user()->usertype == 'camis') {
-            return view('appealEase.camisUser.deniedCases.main');
+            $cases = CaseModel::where('approvalStatus', 'denied')->get();
+            return view('appealEase.camisUser.deniedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {
             return view('appealEase.systemAdmin.admin-management.main');
         }

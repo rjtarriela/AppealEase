@@ -19,12 +19,12 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form>
+                <form action="{{ url('/dashboard/judge-approved/' . $case->id) }}" method="POST">
                     @csrf
                     <div class="mb-3 row">
                         <label for="remarks" class="col-sm-2 col-form-label text-start">Remarks:</label>
                         <div class="col-sm-10">
-                            <textarea id="remarks" name="remarks" class="form-control" rows="4" placeholder="Enter your remarks here..."></textarea>
+                            <textarea id="remarks" name="remarks" class="form-control" rows="4" placeholder="Enter your remarks here..." required></textarea>
                         </div>
                     </div>
 

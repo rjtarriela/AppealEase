@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseModel;
+use App\Models\Judge;
 use App\Models\Requirement;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,6 +40,36 @@ class CaseController extends Controller
         $case->save();
 
         return redirect('/dashboard')->with('success', 'Case sent successfully!');
+    }
+
+    public function approved($id)
+    {
+        $case = CaseModel::findOrFail($id);
+        $case->approvalStatus = 'approved'; // Assuming you have a status column in your cases table
+        $case->save();
+
+        $judge = User::findOrFail($case->case_judgeID);
+        if ($case->case_type == 'civil') {
+            $judge->civil_cases_solved += 1; 
+        } else if ($case->case_type == 'criminal') {
+            $judge->criminal_cases_solved += 1; 
+        } else {
+            $judge->special_cases_solved += 1; 
+        }
+        $judge->save();
+        
+
+        return redirect('/dashboard')->with('success', 'Submitted successfully!');
+    }
+
+    public function denied($id)
+    {
+        $case = CaseModel::findOrFail($id);
+        $case->approvalStatus = 'denied'; // Assuming you have a status column in your cases table
+        $case->save();
+
+        return redirect('/dashboard')->with('success', 'Submitted successfully!');
+        
     }
 
     public function assignRandomJudge($id)

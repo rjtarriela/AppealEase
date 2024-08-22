@@ -18,7 +18,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form>
+                <form action="{{ url('/dashboard/judge-denied/' . $case->id) }}" method="POST">
                     @csrf
                     <div class="mb-3 row">
                         <label for="remarks" class="col-sm-2 col-form-label text-start">Remarks:</label>

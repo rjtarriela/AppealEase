@@ -22,15 +22,46 @@
                 </tr>
             </thead>
             <tbody>
-
-
-                {{-- button for action --}}
-                @csrf
-                <button class="btn btn-outline-success" type="submit" style="display: flex; justify-content: center; align-items: center;">
-                    Send to Supreme Court
-                </button>
-
-
+                @if ($cases->isEmpty())
+                    <tr>
+                        <td colspan="6" class="text-center">No records of cases</td>
+                    </tr>
+                @else
+                    @foreach ($cases as $case)
+                        <tr class="text-center">
+                            <td class="align-content-center">{{ $case->case_number }}</td>
+                            {{-- <td class="align-content-center">{{ $case->case_type }}</td> --}}
+                            {{-- first letter capital --}}
+                            <td class="align-content-center">{{ ucfirst($case->case_type) }}</td>
+                            <td class="align-content-center">{{ $case->case_court }}</td>
+                            <td class="align-content-center">{{ $case->case_judge }}</td>
+                            <td class="align-content-center">
+                                @php
+                                    $requirements = json_decode($case->case_requirement, true);
+                                @endphp
+                                @if (!empty($requirements))
+                                    @foreach ($requirements as $requirement)
+                                        <p style="margin-top: 16px">{{ $requirement }}</p>
+                                    @endforeach
+                                @else
+                                    No requirements
+                                @endif
+                            </td>
+                            <td class="align-content-center">
+                                <!-- Action buttons -->
+                                {{-- Send Button - No function yet --}}
+                                <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST" style="display: flex; justify-content: center; align-items: center;">
+                                    {{-- button for action --}}
+                                    @csrf
+                                    <button class="btn btn-outline-success" type="submit"
+                                        style="display: flex; justify-content: center; align-items: center;">
+                                        Send to Supreme Court
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>
