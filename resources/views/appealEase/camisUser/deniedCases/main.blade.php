@@ -52,6 +52,14 @@
 
         <!-- Page Content -->
         <main>
+            {{-- Popup Message --}}
+            @if (session('success'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        alert('{{ session('success') }}');
+                    });
+                </script>
+            @endif
             {{-- COGIE --}}
             <div class="container my-3">
 
@@ -64,6 +72,38 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.edit-btn');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const caseRequirement = JSON.parse(this.dataset.case_requirement);
+                    const caseId = this.dataset.id;
+
+                    // Set the form action
+                    document.getElementById('editForm').action = `/denied-cases/edit-requirements/${caseId}`;
+
+                    // Populate the hidden input with the case ID
+                    document.getElementById('editId').value = caseId;
+
+                    // Uncheck all checkboxes
+                    document.querySelectorAll('.form-check-input').forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+
+                    // Check the relevant checkboxes based on the case requirement
+                    caseRequirement.forEach(requirement => {
+                        const checkbox = document.querySelector(
+                            `.form-check-input[value="${requirement}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

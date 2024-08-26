@@ -50,7 +50,7 @@
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Send Button - No function yet --}}
-                                <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST" style="display: flex; justify-content: center; align-items: center;">
+                                <form action="{{ url('/approved-cases/send-to-supremeCourt/' . $case->id) }}" method="POST" style="display: flex; justify-content: center; align-items: center;">
                                     {{-- button for action --}}
                                     @csrf
                                     <button class="btn btn-outline-success" type="submit"

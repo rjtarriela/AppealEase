@@ -18,6 +18,7 @@
                     <th>Case Court</th>
                     <th>Case Judge</th>
                     <th>Case Requirements</th>
+                    <th>Remarks</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -47,17 +48,11 @@
                                     No requirements
                                 @endif
                             </td>
+                            <td class="align-content-center">{{ $case->remarks }}</td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Send Button - No function yet --}}
-                                <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST" style="display: flex; justify-content: center; align-items: center;">
-                                    {{-- button for action --}}
-                                    @csrf
-                                    <button class="btn btn-outline-success" type="submit"
-                                        style="display: flex; justify-content: center; align-items: center;">
-                                        Send to Supreme Court
-                                    </button>
-                                </form>
+                                @include('appealEase.camisUser.deniedCases.editButton')
                             </td>
                         </tr>
                     @endforeach

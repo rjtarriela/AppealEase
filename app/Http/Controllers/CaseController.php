@@ -42,34 +42,38 @@ class CaseController extends Controller
         return redirect('/dashboard')->with('success', 'Case sent successfully!');
     }
 
-    public function approved($id)
+    public function approved(Request $request, $id)
     {
+        // dd($id);
+
         $case = CaseModel::findOrFail($id);
         $case->approvalStatus = 'approved'; // Assuming you have a status column in your cases table
+        $case->adminStatus = 'Sent to Supreme Court';
+
+        $case->remarks = $request->input('remarks');
         $case->save();
 
         $judge = User::findOrFail($case->case_judgeID);
         if ($case->case_type == 'civil') {
-            $judge->civil_cases_solved += 1; 
+            $judge->civil_cases_solved += 1;
         } else if ($case->case_type == 'criminal') {
-            $judge->criminal_cases_solved += 1; 
+            $judge->criminal_cases_solved += 1;
         } else {
-            $judge->special_cases_solved += 1; 
+            $judge->special_cases_solved += 1;
         }
         $judge->save();
-        
+
 
         return redirect('/dashboard')->with('success', 'Submitted successfully!');
     }
 
-    public function denied($id)
+    public function denied(Request $request, $id)
     {
         $case = CaseModel::findOrFail($id);
         $case->approvalStatus = 'denied'; // Assuming you have a status column in your cases table
+        $case->remarks = $request->input('remarks');
         $case->save();
-
         return redirect('/dashboard')->with('success', 'Submitted successfully!');
-        
     }
 
     public function assignRandomJudge($id)
@@ -87,5 +91,31 @@ class CaseController extends Controller
 
         // Return back to the dashboard with a success message
         return redirect('/dashboard')->with('success', 'Case assigned successfully!');
+    }
+
+    public function viewCases($judgeId)
+    {
+        $cases = CaseModel::where('case_judgeID', $judgeId)->get();
+        $judge = User::findOrFail($judgeId);
+
+        return view('appealEase.systemAdmin.dashboard.view-cases', compact('cases', 'judge'));
+    }
+
+    public function sendToSupremeCourt($id)
+    {
+        $case = CaseModel::findOrFail($id);
+        $case->adminStatus = 'Case Solved';
+        $case->save();
+
+        return redirect('/approved-cases')->with('success', 'Case sent successfully!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $case = CaseModel::findOrFail($id);
+        $case->case_requirement = json_encode($request->case_requirement);
+        $case->save();
+
+        return redirect()->back()->with('success', 'Case requirements updated successfully.');
     }
 }

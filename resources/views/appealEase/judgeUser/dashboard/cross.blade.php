@@ -1,12 +1,12 @@
 {{-- MODAL FOR ADD BUTTON --}}
-<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#crossModal">
+<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#crossModal{{ $case->id }}">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 L6 18 M6 6 L18 18"></path>
     </svg>
 </button>
 
 <!-- The Modal -->
-<div class="modal" id="crossModal">
+<div class="modal" id="crossModal{{ $case->id }}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 

@@ -54,7 +54,9 @@
                                                     d="M14.828 2.828a3 3 0 0 1 4.243 4.243L8.243 18.828a1 1 0 0 1-.474.263l-5 1a1 1 0 0 1-1.213-1.213l1-5a1 1 0 0 1 .263-.474l10.828-10.828zM4.828 18.828L14 9.656l-2-2L2.828 16.828a1 1 0 0 0-.263.474l-1 5 5-1a1 1 0 0 0 .474-.263zM20 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                             </svg>
                                         </button>
+
                                         @include('appealEase.systemAdmin.dashboard.viewButton')
+                                        
                                         <form action="{{ url('/dashboard/' . $judge->id) }}" method="POST"
                                             style="display:inline;">
                                             @csrf

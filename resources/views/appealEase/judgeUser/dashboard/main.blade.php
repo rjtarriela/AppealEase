@@ -35,18 +35,18 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100">
-        @include('appealEase.systemAdmin.navigation-menu')
+        @include('appealEase.judgeUser.navigation-menu')
 
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                Admin Management
+                Division {{ $user->division }}: Judge {{ $user->name }}
             </div>
         </header>
 
         <!-- Page Content -->
         <main>
-            
+
             {{-- Popup Message --}}
             @if (session('success'))
                 <script type="text/javascript">
@@ -55,9 +55,9 @@
                     });
                 </script>
             @endif
-
-            @include('appealEase.judgeUser.dashboard.judgeTable')
-
+            <div class="container my-3">
+                @include('appealEase.judgeUser.dashboard.judgeTable')
+            </div>
         </main>
     </div>
 

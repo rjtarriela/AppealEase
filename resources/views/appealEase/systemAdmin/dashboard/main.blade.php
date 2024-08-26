@@ -62,7 +62,9 @@
             @endif
 
             <div class="mx-3 my-3">
-                @include('appealEase.systemAdmin.dashboard.judgeTable', ['judges' => $judges])
+                @include('appealEase.systemAdmin.dashboard.judgeTable')
+
+                {{-- modal --}}
                 @include('appealEase.systemAdmin.dashboard.editJudgeTable')
             </div>
 
