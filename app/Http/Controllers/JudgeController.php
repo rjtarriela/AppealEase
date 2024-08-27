@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Judge;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JudgeController extends Controller
@@ -34,5 +35,20 @@ class JudgeController extends Controller
         $judge->delete();
 
         return redirect('/dashboard')->with('success', 'Judge deleted successfully!');
+    }
+
+    public function updateRole($id, $role)
+    {
+        // Validate the role
+        if (!in_array($role, ['normal', 'head'])) {
+            return redirect()->back()->with('error', 'Invalid role selected.');
+        }
+
+        // Find the judge and update the role
+        $judge = User::findOrFail($id);
+        $judge->judgeRole = $role;
+        $judge->save();
+
+        return redirect()->back()->with('success', 'Judge role updated successfully.');
     }
 }

@@ -12,6 +12,7 @@
                     <option value="camis">CAMIS</option>
                     <option value="clerk">CLERK</option>
                     <option value="judge">JUDGE</option>
+                    <option value="division">DIVISION ADMIN</option>
                     <!-- Add other user types as needed -->
                 </select>
             </div>
@@ -29,6 +30,20 @@
 
             <!-- Additional fields for 'judge' userType -->
             <template x-if="userType === 'judge'">
+                <div>
+                    <div class="mt-4">
+                        <x-label for="contact_number">Contact Number</x-label>
+                        <input type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="contact_number" name="contact_number" pattern="\d{11}" title="Please enter exactly 11 digits" required>
+                    </div>
+                    <div class="mt-4">
+                        <x-label for="division">Division</x-label>
+                        <input type="number" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="division" name="division" min="1" max="5" required>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Additional fields for 'division' userType -->
+            <template x-if="userType === 'division'">
                 <div>
                     <div class="mt-4">
                         <x-label for="contact_number">Contact Number</x-label>

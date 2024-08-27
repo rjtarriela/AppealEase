@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('case_type', ['civil', 'criminal', 'special']);
             $table->string('case_court');
             $table->string('case_judge');
+            $table->string('judgeHead')->nullable();
             $table->json('case_requirement'); // Store requirements as a JSON array
             $table->enum('adminStatus', ['Sent to Supreme Court', 'Case Solved'])->nullable();
             $table->enum('status', ['pending', 'sent', 'received'])->default('pending');

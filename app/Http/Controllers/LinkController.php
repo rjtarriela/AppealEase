@@ -28,6 +28,10 @@ class LinkController extends Controller
             $user = Auth::user();
             $cases = CaseModel::where('case_judgeID', $userId)->get();
             return view('appealEase.judgeUser.dashboard.main', compact('cases', 'user'));
+        } else if (Auth::user()->usertype == 'division') {
+            $divisionID = Auth::user()->division;
+            $judges = User::where('usertype', 'judge')->where('division', $divisionID)->get();
+            return view('appealEase.divisionAdmin.dashboard.main', compact('judges'));
         } else {
             $judges = User::where('usertype', 'judge')->get();
             $cases = CaseModel::all();

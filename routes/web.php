@@ -48,7 +48,7 @@ Route::middleware([
     // routes/web.php
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
     Route::post('/approved-cases/send-to-supremeCourt/{id}', [CaseController::class, 'sendToSupremeCourt']);
-    
+
     // CLERK Route
     Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomJudge']);
     // routes/web.php
@@ -57,4 +57,7 @@ Route::middleware([
     // JUDGE Route
     Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
     Route::post('/dashboard/judge-denied/{id}', [CaseController::class, 'denied']);
+
+    // DIVISION
+    Route::get('/judge/update-role/{id}/{role}', [JudgeController::class, 'updateRole'])->name('judge.updateRole');
 });

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');;
+            $table->string('password');
 
             // Change usertype to ENUM
-            $table->enum('usertype', ['admin', 'camis', 'clerk', 'judge'])->default('admin');
+            $table->enum('usertype', ['admin', 'camis', 'clerk', 'judge', 'division'])->default('admin');
 
             // Add contact_number as a string with a max length of 11
             $table->string('contact_number', 11)->nullable();
@@ -30,6 +30,8 @@ return new class extends Migration
             $table->integer('criminal_cases_solved')->default(0);
             $table->integer('civil_cases_solved')->default(0);
             $table->integer('special_cases_solved')->default(0);
+
+            $table->enum('judgeRole', ['normal', 'head'])->default('normal');
 
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
