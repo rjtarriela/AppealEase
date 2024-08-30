@@ -14,25 +14,32 @@ class LinkController extends Controller
     public function nav1()
     {
         if (Auth::user()->usertype == 'camis') {
+            // CAMIS Dashboard
             $civilRequirements = Requirement::where('case_type', 'civil')->get();
             $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
             $specialRequirements = Requirement::where('case_type', 'special')->get();
             $cases = CaseModel::all();
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases'));
-            // return view('appealEase.user.main', compact('judges'));
         } else if (Auth::user()->usertype == 'clerk') {
+            // CLERK Dashboard
             $status = CaseModel::where('status', 'sent')->get();
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
         } else if (Auth::user()->usertype == 'judge') {
-            $userId = Auth::id();
+            // JUDGE Dashboard
+            // $userId = Auth::id();
             $user = Auth::user();
-            $cases = CaseModel::where('case_judgeID', $userId)->get();
-            return view('appealEase.judgeUser.dashboard.main', compact('cases', 'user'));
+            $caseDivision = Auth::user()->division;
+            $cases = CaseModel::where('division', $caseDivision)->get();
+            $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
+
+            return view('appealEase.judgeUser.dashboard.main', compact('cases', 'user', 'judges'));
         } else if (Auth::user()->usertype == 'division') {
+            // DIVISION Dashboard
             $divisionID = Auth::user()->division;
             $judges = User::where('usertype', 'judge')->where('division', $divisionID)->get();
             return view('appealEase.divisionAdmin.dashboard.main', compact('judges'));
         } else {
+            // ADMIN Dashboard
             $judges = User::where('usertype', 'judge')->get();
             $cases = CaseModel::all();
             return view('appealEase.systemAdmin.dashboard.main', compact('judges', 'cases'));

@@ -8,7 +8,7 @@
 
 {{-- EDIT MODAL FROM THE TABLE --}}
 <div class="modal fade" id="editJudgeTableModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
 
             {{-- HEADER --}}
@@ -28,8 +28,8 @@
                 
                         @if($case->case_type === 'civil')
                             @foreach ($civilRequirements as $civilRequirement)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="checkCivil{{ $loop->index }}"
+                                <div class="form-check" style="display: flex; justify-content: center">
+                                    <input class="form-check-input mr-1" type="checkbox" id="checkCivil{{ $loop->index }}"
                                         name="case_requirement[]" value="{{ $civilRequirement->requirement_name }}">
                                     <label class="form-check-label"
                                         for="checkCivil{{ $loop->index }}">{{ $civilRequirement->requirement_name }}</label>
@@ -38,7 +38,7 @@
 
                         @elseif($case->case_type === 'criminal')
                             @foreach ($criminalRequirements as $criminalRequirement)
-                                <div class="form-check">
+                                <div class="form-check" style="display: flex; justify-content: center">
                                     <input class="form-check-input" type="checkbox" id="checkCriminal{{ $loop->index }}"
                                         name="case_requirement[]" value="{{ $criminalRequirement->requirement_name }}">
                                     <label class="form-check-label"
@@ -48,7 +48,7 @@
 
                         @elseif($case->case_type === 'special')
                             @foreach ($specialRequirements as $specialRequirement)
-                                <div class="form-check">
+                                <div class="form-check" style="display: flex; justify-content: center">
                                     <input class="form-check-input" type="checkbox" id="checkSpecial{{ $loop->index }}"
                                         name="case_requirement[]" value="{{ $specialRequirement->requirement_name }}">
                                     <label class="form-check-label"

@@ -25,7 +25,7 @@
             <tbody>
                 @if ($cases->isEmpty())
                     <tr>
-                        <td colspan="6" class="text-center">No records of cases</td>
+                        <td colspan="7" class="text-center">No records of cases</td>
                     </tr>
                 @else
                     @foreach ($cases as $case)

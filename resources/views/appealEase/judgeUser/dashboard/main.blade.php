@@ -56,7 +56,7 @@
                 </script>
             @endif
             <div class="container my-3">
-                @include('appealEase.judgeUser.dashboard.judgeTable')
+                @include('appealEase.judgeUser.dashboard.judgeTab')
             </div>
         </main>
     </div>

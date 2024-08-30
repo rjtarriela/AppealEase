@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password',
         'usertype',
         'contact_number',
-        'division', 
+        'division',
         'criminal_cases_solved',
         'civil_cases_solved',
         'special_cases_solved',
@@ -67,5 +67,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function decisions()
+    {
+        return $this->hasMany(Decision::class, 'judge_id');
     }
 }

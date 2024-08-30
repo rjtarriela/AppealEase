@@ -32,7 +32,8 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" name="adminStatus" value="Affirmed">Affirmed</button>
+                        <button type="submit" class="btn btn-primary" name="adminStatus" value="Acquitted">Acquitted</button>
                     </div>
                 </form>
             </div>

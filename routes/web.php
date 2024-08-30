@@ -50,13 +50,15 @@ Route::middleware([
     Route::post('/approved-cases/send-to-supremeCourt/{id}', [CaseController::class, 'sendToSupremeCourt']);
 
     // CLERK Route
-    Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomJudge']);
+    Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomDivision']);
     // routes/web.php
     // Route::post('/clerk/cases/{case_number}/receive', [ClerkController::class, 'markAsReceived'])->name('clerk.cases.receive');
 
     // JUDGE Route
     Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
     Route::post('/dashboard/judge-denied/{id}', [CaseController::class, 'denied']);
+    Route::post('/dashboard/judge-complete/{id}', [CaseController::class, 'storeDecision']);
+    
 
     // DIVISION
     Route::get('/judge/update-role/{id}/{role}', [JudgeController::class, 'updateRole'])->name('judge.updateRole');

@@ -50,7 +50,7 @@
 
                                 @if ($judgeCases->isEmpty())
                                     <tr>
-                                        <td colspan="6" class="text-center">No cases found for this judge</td>
+                                        <td colspan="7" class="text-center">No cases found for this judge</td>
                                     </tr>
                                 @else
                                     @foreach ($judgeCases as $case)

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_judgeID')->nullable();
+            $table->tinyInteger('division')->nullable(); // Adjust the position as needed
             // $table->string('case_number'); // Storing as a string
             $table->unsignedBigInteger('case_number')->unique(); // Storing as an integer
             $table->enum('case_type', ['civil', 'criminal', 'special']);
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('case_judge');
             $table->string('judgeHead')->nullable();
             $table->json('case_requirement'); // Store requirements as a JSON array
-            $table->enum('adminStatus', ['Sent to Supreme Court', 'Case Solved'])->nullable();
+            $table->enum('adminStatus', ['Affirmed', 'Acquitted', 'Sent to Supreme Court'])->nullable();
             $table->enum('status', ['pending', 'sent', 'received'])->default('pending');
             $table->enum('approvalStatus', ['approved', 'denied'])->nullable();
             $table->enum('statusRandom', ['assigned', 'unassigned'])->default('unassigned');

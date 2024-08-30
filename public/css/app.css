@@ -29,6 +29,7 @@
 
 .btn-outline-danger:hover {
     background-color: #d3d3d3; /* Light gray background */
+    color: red;
 }
 
 .btn-outline-info:hover {
