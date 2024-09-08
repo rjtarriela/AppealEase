@@ -50,7 +50,7 @@
                                         </button>
                                         {{-- delete --}}
                                         <form action="{{ url('/requirement-details/' . $civilRequirement->id) }}" method="POST"
-                                            style="display:inline;">
+                                            style="display:inline;" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger">
@@ -108,7 +108,7 @@
                                         </button>
                                         {{-- delete --}}
                                         <form action="{{ url('/requirement-details/' . $criminalRequirement->id) }}" method="POST"
-                                            style="display:inline;">
+                                            style="display:inline;" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger">
@@ -166,7 +166,7 @@
                                         </button>
                                         {{-- delete --}}
                                         <form action="{{ url('/requirement-details/' . $specialRequirement->id) }}" method="POST"
-                                            style="display:inline;">
+                                            style="display:inline;" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger">

@@ -106,7 +106,7 @@ class CaseController extends Controller
         $randomDivision = $divisions[array_rand($divisions)];
 
         // Update the case with the randomly selected division
-        $case = CaseModel::find($id);
+        $case = CaseModel::findOrFail($id);
         $case->statusRandom = 'assigned';
         $case->division = $randomDivision;
         $case->save();

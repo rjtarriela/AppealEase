@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LinkController extends Controller
 {
-    //CAMIS
     public function nav1()
     {
         if (Auth::user()->usertype == 'camis') {
@@ -19,10 +18,13 @@ class LinkController extends Controller
             $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
             $specialRequirements = Requirement::where('case_type', 'special')->get();
             $cases = CaseModel::all();
+
+            // hanggat di pa na sesent, nakadisplay lang yung mga cases.
+            // $cases = CaseModel::where('status', 'pending')->get();
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases'));
         } else if (Auth::user()->usertype == 'clerk') {
             // CLERK Dashboard
-            $status = CaseModel::where('status', 'sent')->get();
+            $status = CaseModel::where('statusRandom', 'unassigned')->get();
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
         } else if (Auth::user()->usertype == 'judge') {
             // JUDGE Dashboard
@@ -57,6 +59,11 @@ class LinkController extends Controller
             $specialRequirements = Requirement::where('case_type', 'special')->get();
 
             return view('appealEase.systemAdmin.requirement-details.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements'));
+        } else if (Auth::user()->usertype == 'judge') {
+            $caseDivision = Auth::user()->division;
+            $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
+
+            return view('appealEase.judgeUser.judgeProfile.main', compact('judges'));
         }
     }
 

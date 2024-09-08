@@ -58,7 +58,7 @@
                                         @include('appealEase.systemAdmin.dashboard.viewButton')
                                         
                                         <form action="{{ url('/dashboard/' . $judge->id) }}" method="POST"
-                                            style="display:inline;">
+                                            style="display:inline;" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger" style=" border-top-left-radius: 0; border-bottom-left-radius: 0;">

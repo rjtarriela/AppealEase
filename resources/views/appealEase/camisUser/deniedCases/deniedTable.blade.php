@@ -52,7 +52,10 @@
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Send Button - No function yet --}}
-                                @include('appealEase.camisUser.deniedCases.editButton')
+                                <div style="display: flex; justify-content: space-evenly">
+                                    @include('appealEase.camisUser.deniedCases.editButton')
+                                    @include('appealEase.camisUser.deniedCases.doneButton')
+                                </div>
                             </td>
                         </tr>
                     @endforeach

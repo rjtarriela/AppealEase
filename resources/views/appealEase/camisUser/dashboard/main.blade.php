@@ -71,6 +71,12 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete?");
+        }
+    </script>
 </body>
 
 </html>

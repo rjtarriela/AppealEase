@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link id="nav-link" href="{{ route('approved-cases') }}" :active="request()->routeIs('approved-cases')">
-                        Approved Cases
+                        Solved Cases
                     </x-nav-link>
                     <x-nav-link id="nav-link" href="{{ route('denied-cases') }}" :active="request()->routeIs('denied-cases')">
                         Denied Cases

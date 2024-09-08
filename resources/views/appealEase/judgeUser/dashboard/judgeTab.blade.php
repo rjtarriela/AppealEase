@@ -17,7 +17,7 @@
     <div class="tab-pane active" id="tabs-1" role="tabpanel">
         <div class="card mb-4">
             <div class="card-body">
-                <table id="caseTable" class="table">
+                <table id="caseTable1" class="table">
                     <thead>
                         <tr class="text-center">
                             <th>Case Number</th>
@@ -73,7 +73,7 @@
     <div class="tab-pane" id="tabs-2" role="tabpanel">
         <div class="card mb-4">
             <div class="card-body">
-                <table id="caseTable" class="table">
+                <table id="caseTable2" class="table">
                     <thead>
                         <tr class="text-center">
                             <th>Case Number</th>
@@ -81,7 +81,7 @@
                             <th>Case Court</th>
                             <th>Case Judge</th>
                             @foreach ($judges as $judge)
-                                <th>Judge:{{ $judge->name }}</th>
+                                <th>Associate: {{ $judge->name }}</th>
                             @endforeach
                             <th>Case Requirements</th>
                             <th>Actions</th>

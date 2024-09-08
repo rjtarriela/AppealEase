@@ -62,7 +62,7 @@
                                     </button>
                                 </form>
                                 <form action="{{ url('/dashboard/camis/' . $case->id) }}" method="POST"
-                                    style="display:inline;">
+                                    style="display:inline;" onsubmit="return confirmDelete()">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger">

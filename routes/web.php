@@ -48,6 +48,8 @@ Route::middleware([
     // routes/web.php
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
     Route::post('/approved-cases/send-to-supremeCourt/{id}', [CaseController::class, 'sendToSupremeCourt']);
+    Route::post('/dashboard/case-done/{id}', [CaseController::class, 'doneEdit']);
+    
 
     // CLERK Route
     Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomDivision']);
@@ -58,6 +60,7 @@ Route::middleware([
     Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
     Route::post('/dashboard/judge-denied/{id}', [CaseController::class, 'denied']);
     Route::post('/dashboard/judge-complete/{id}', [CaseController::class, 'storeDecision']);
+    Route::get('/judgeProfile', [LinkController::class, 'nav2'])->name('judgeProfile');
     
 
     // DIVISION

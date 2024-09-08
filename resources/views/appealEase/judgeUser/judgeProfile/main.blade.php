@@ -31,12 +31,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <script>
         $(document).ready(function() {
-            $('#caseTable1').DataTable();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#caseTable2').DataTable();
+            $('#judgesTable').DataTable();
         });
     </script>
 </head>
@@ -50,7 +45,7 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                Division {{ $user->division }}: Judge {{ $user->name }}
+                Judge Profile
             </div>
         </header>
 
@@ -65,8 +60,8 @@
                     });
                 </script>
             @endif
-            <div class="mx-3 my-3">
-                @include('appealEase.judgeUser.dashboard.judgeTab')
+            <div class="container my-3">
+                @include('appealEase.judgeUser.judgeProfile.judgeProfile')
             </div>
         </main>
     </div>
