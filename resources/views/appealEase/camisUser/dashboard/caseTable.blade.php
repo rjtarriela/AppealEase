@@ -15,7 +15,7 @@
                 <tr class="text-center">
                     <th>Case Number</th>
                     <th>Case Type</th>
-                    <th>Case Court</th>
+                    <th>Lower Court</th>
                     <th>Case Judge</th>
                     <th>Case Requirements</th>
                     <th>Actions</th>
@@ -37,15 +37,30 @@
                             <td class="align-content-center">{{ $case->case_judge }}</td>
                             <td class="align-content-center">
                                 @php
-                                    $requirements = json_decode($case->case_requirement, true);
+                                    // Decode all JSON encoded file paths
+                                    $uploads = [
+                                        'pleading' => json_decode($case->pleading, true),
+                                        'evidences' => json_decode($case->evidences, true),
+                                        'verification' => json_decode($case->verification, true),
+                                        'certificate' => json_decode($case->certificate, true),
+                                        'judicial_affidavit' => json_decode($case->judicial_affidavit, true),
+                                        'notice_of_appeal' => json_decode($case->notice_of_appeal, true),
+                                        'documents' => json_decode($case->documents, true),
+                                        'memoranda' => json_decode($case->memoranda, true),
+                                        'other_files' => json_decode($case->other_files, true),
+                                    ];
                                 @endphp
-                                @if (!empty($requirements))
-                                    @foreach ($requirements as $requirement)
-                                        <p style="margin-top: 16px">{{ $requirement }}</p>
-                                    @endforeach
-                                @else
-                                    No requirements
-                                @endif
+
+                                @foreach ($uploads as $key => $files)
+                                    @if (!empty($files))
+                                        <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong><br>
+                                        @foreach ($files as $filePath)
+                                            <a href="{{ asset('storage/' . $filePath) }}" target="_blank">
+                                                View {{ basename($filePath) }}
+                                            </a><br>
+                                        @endforeach
+                                    @endif
+                                @endforeach
                             </td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->
@@ -53,7 +68,7 @@
                                 <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
-                                    <button class="btn btn-outline-success edit-btn" type="submit">
+                                    <button class="btn btn-outline-success edit-btn" type="submit"  onclick="return confirmSubmit()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                             viewBox="0 0 100 100">
                                             <path d="M20 20 L80 50 L20 80 Z" fill="none" stroke="green"

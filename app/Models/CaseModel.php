@@ -21,4 +21,9 @@ class CaseModel extends Model
     // {
     //     return $this->belongsToMany(User::class, 'case_judge', 'case_id', 'judge_id');
     // }
+    // Relationship with CaseSolved
+    public function caseSolved()
+    {
+        return $this->hasMany(CasesSolved::class, 'case_id');
+    }
 }

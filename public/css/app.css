@@ -38,6 +38,7 @@
 
 .btn-outline-primary:hover {
     background-color: #d3d3d3; /* Light gray background */
+    color: #0d6efd;
 }
 
 .dataTables_wrapper .dataTables_length select {
@@ -66,4 +67,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; /* Optional: adds "..." for overflowed text */
+}
+
+.btn-outline-info:hover {
+    color: #0dcaf0;
 }

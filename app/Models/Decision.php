@@ -9,7 +9,7 @@ class Decision extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['case_id', 'judge_id', 'decision'];
+    protected $fillable = ['case_id', 'judge_id', 'decision', 'remarks'];
 
     public function case()
     {

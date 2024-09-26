@@ -32,12 +32,11 @@
                                 <option value="" disabled selected>Select Case Type</option>
                                 <option value="civil">CIVIL</option>
                                 <option value="criminal">CRIMINAL</option>
-                                <option value="special">SPECIAL</option>
-                                <!-- Add other user types as needed -->
+                                <option value="special">ADMINISTRATIVE</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="case_court" class="form-label">Case Court:</label>
+                            <label for="case_court" class="form-label">Lower Court:</label>
                             <input type="text" class="form-control" id="case_court" placeholder="Enter Case Court"
                                 name="case_court" required>
                         </div>
@@ -47,57 +46,83 @@
                                 name="case_judge" required>
                         </div>
                         <template x-if="caseType === 'civil'">
-                            <div class="mb-3">
-                                <label for="requirements" class="form-label">Case Requirements:</label>
-
-                                @foreach ($civilRequirements as $civilRequirement)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check{{ $loop->index }}"
-                                            name="case_requirement[]" value="{{ $civilRequirement->requirement_name }}">
-                                        <label class="form-check-label"
-                                            for="check{{ $loop->index }}">{{ $civilRequirement->requirement_name }}</label>
-                                    </div>
-                                @endforeach
-
+                            <div>
+                                <div class="mb-3">
+                                    <label for="pleading" class="form-label">Pleading:</label>
+                                    <input type="file" class="form-control" id="pleading" name="pleading[]" multiple
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="evidences" class="form-label">Evidences:</label>
+                                    <input type="file" class="form-control" id="evidences" name="evidences[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="verification" class="form-label">Verification:</label>
+                                    <input type="file" class="form-control" id="verification" name="verification[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="certificate" class="form-label">Certificate of Non-Forum
+                                        Shopping:</label>
+                                    <input type="file" class="form-control" id="certificate" name="certificate[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="judicial_affidavit" class="form-label">Judicial Affidavit:</label>
+                                    <input type="file" class="form-control" id="judicial_affidavit" name="judicial_affidavit[]"
+                                        multiple required>
+                                </div>
                             </div>
-                        </template>
 
+                        </template>
                         <template x-if="caseType === 'criminal'">
-                            <div class="mb-3">
-                                <label for="requirements" class="form-label">Case Requirements:</label>
-
-                                @foreach ($criminalRequirements as $criminalRequirement)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check{{ $loop->index }}"
-                                            name="case_requirement[]" value="{{ $criminalRequirement->requirement_name }}">
-                                        <label class="form-check-label"
-                                            for="check{{ $loop->index }}">{{ $criminalRequirement->requirement_name }}</label>
-                                    </div>
-                                @endforeach
-
+                            <div>
+                                <div class="mb-3">
+                                    <label for="evidences" class="form-label">Evidences:</label>
+                                    <input type="file" class="form-control" id="evidences" name="evidences[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="judicial_affidavit" class="form-label">Judicial Affidavit:</label>
+                                    <input type="file" class="form-control" id="judicial_affidavit" name="judicial_affidavit[]"
+                                        multiple required>
+                                </div>
                             </div>
-                        </template>
 
+                        </template>
                         <template x-if="caseType === 'special'">
-                            <div class="mb-3">
-                                <label for="requirements" class="form-label">Case Requirements:</label>
-
-                                @foreach ($specialRequirements as $specialRequirement)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check{{ $loop->index }}"
-                                            name="case_requirement[]" value="{{ $specialRequirement->requirement_name }}">
-                                        <label class="form-check-label"
-                                            for="check{{ $loop->index }}">{{ $specialRequirement->requirement_name }}</label>
-                                    </div>
-                                @endforeach
-
+                            <div>
+                                <div class="mb-3">
+                                    <label for="notice_of_appeal" class="form-label">Notice of Appeal:</label>
+                                    <input type="file" class="form-control" id="notice_of_appeal" name="notice_of_appeal[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="documents" class="form-label">Documents from RTC/MTC:</label>
+                                    <input type="file" class="form-control" id="documents" name="documents[]"
+                                        multiple required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="memoranda" class="form-label">Memoranda:</label>
+                                    <input type="file" class="form-control" id="memoranda" name="memoranda[]"
+                                        multiple required>
+                                </div>
                             </div>
+
                         </template>
+
+
+                        <div class="mb-3">
+                            <label for="other_files" class="form-label">Other File/s (Optional):</label>
+                            <input type="file" class="form-control" id="other_files" name="other_files[]" multiple>
+                        </div>
+
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Submit</button>
                 </div>
                 </form>
             </div>

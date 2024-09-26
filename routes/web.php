@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\CaseRequirementController;
+use App\Http\Controllers\CaseUpdate;
 use App\Http\Controllers\ClerkController;
 use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\LinkController;
@@ -37,6 +38,8 @@ Route::middleware([
 
     Route::get('/admin-management', [LinkController::class, 'nav3'])->name('admin-management');
     Route::post('/admin-management', [RegisteredUserController::class, 'store']);
+
+    Route::get('/admin/division/{divisionId}/details', [CaseUpdate::class, 'getDivisionDetails']);
 
     // CAMIS Route
     Route::post('/dashboard/camis/submit', [CaseController::class, 'store']);

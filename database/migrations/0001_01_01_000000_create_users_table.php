@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('contact_number', 11)->nullable();
 
             // Add division as a tinyInteger
-            $table->tinyInteger('division')->nullable();
+            $table->tinyInteger('division')->nullable()->index();
 
-            $table->integer('criminal_cases_solved')->default(0);
-            $table->integer('civil_cases_solved')->default(0);
-            $table->integer('special_cases_solved')->default(0);
+            // $table->integer('criminal_cases_solved')->default(0);
+            // $table->integer('civil_cases_solved')->default(0);
+            // $table->integer('special_cases_solved')->default(0);
 
             $table->enum('judgeRole', ['normal', 'head'])->default('normal');
 

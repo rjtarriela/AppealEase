@@ -1,10 +1,7 @@
 {{-- MODAL FOR ADD BUTTON --}}
 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
     data-bs-target="#checkModal{{ $case->id }}">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="green"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
-        <path d="M20 6L9 17l-5-5" />
-    </svg>
+    Verdict
 </button>
 
 <!-- The Modal -->
@@ -14,7 +11,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Case Appeal: Successful!</h4>
+                <h4 class="modal-title">Verdict</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -32,8 +29,8 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="adminStatus" value="Affirmed">Affirmed</button>
-                        <button type="submit" class="btn btn-primary" name="adminStatus" value="Acquitted">Acquitted</button>
+                        <button type="submit" class="btn btn-primary" name="decision" value="Affirmed" onclick="return confirmDecision('Affirmed')">Affirmed</button>
+                        <button type="submit" class="btn btn-primary" name="decision" value="Acquitted" onclick="return confirmDecision('Acquitted')">Acquitted</button>
                     </div>
                 </form>
             </div>

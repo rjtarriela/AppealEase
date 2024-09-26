@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 // impelements MustVerifyEmail
 {
     use HasApiTokens;
@@ -31,9 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'usertype',
         'contact_number',
         'division',
-        'criminal_cases_solved',
-        'civil_cases_solved',
-        'special_cases_solved',
+        // 'criminal_cases_solved',
+        // 'civil_cases_solved',
+        // 'special_cases_solved',
     ];
 
     /**
@@ -77,6 +77,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // public function cases()
     // {
-    //     return $this->belongsToMany(CaseModel::class, 'case_judge', 'judge_id', 'case_id');
+    //     return $this->hasMany(CaseModel::class, 'case_judgeID');
     // }
+    // Relationship with CaseSolved
+    public function casesSolved()
+    {
+        return $this->hasMany(CasesSolved::class, 'user_id');
+    }
+
+    public function divisionCasesSolved()
+    {
+        return $this->hasMany(CasesSolved::class, 'division_id', 'division');
+    }
 }

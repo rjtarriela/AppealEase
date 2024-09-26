@@ -1,5 +1,8 @@
 <div class="container my-3">
     <div x-data="{ userType: '' }">
+
+    <x-validation-errors class="mb-4" />
+
         <!-- Start of the form -->
         <form method="POST" action="{{ route('admin-management') }}">
             @csrf
@@ -11,14 +14,13 @@
                     <option value="" disabled selected>Select Role</option>
                     <option value="camis">CAMIS</option>
                     <option value="clerk">CLERK</option>
-                    <option value="judge">JUDGE</option>
-                    <option value="division">DIVISION ADMIN</option>
+                    <option value="judge">JUSTICE</option>
                     <!-- Add other user types as needed -->
                 </select>
             </div>
 
             <!-- Common fields -->
-            <div>
+            <div class="mt-4">
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>

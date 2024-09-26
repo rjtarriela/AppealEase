@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>AppealEase</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -65,7 +65,7 @@
                 @include('appealEase.systemAdmin.dashboard.judgeTable')
 
                 {{-- modal --}}
-                @include('appealEase.systemAdmin.dashboard.editJudgeTable')
+                {{-- @include('appealEase.systemAdmin.dashboard.editJudgeTable')  --}}
             </div>
 
         </main>
@@ -100,6 +100,22 @@
             return confirm("Are you sure you want to delete?");
         }
     </script>
+    <script>
+        function loadDivisionData(divisionId) {
+            $.ajax({
+                url: '/admin/division/' + divisionId + '/details',
+                method: 'GET',
+                success: function(data) {
+                    // Populate the modal with the division details
+                    $('#divisionDetails').html(data);
+                },
+                error: function() {
+                    alert('Error loading division details.');
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>

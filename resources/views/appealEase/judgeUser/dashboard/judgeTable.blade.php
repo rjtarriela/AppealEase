@@ -15,7 +15,7 @@
                 <tr class="text-center">
                     <th>Case Number</th>
                     <th>Case Type</th>
-                    <th>Case Court</th>
+                    <th>Lower Court</th>
                     <th>Case Judge</th>
                     <th>Case Requirements</th>
                     <th>Actions</th>
@@ -37,21 +37,35 @@
                             <td class="align-content-center">{{ $case->case_judge }}</td>
                             <td class="align-content-center">
                                 @php
-                                    $requirements = json_decode($case->case_requirement, true);
+                                    // Decode all JSON encoded file paths
+                                    $uploads = [
+                                        'pleading' => json_decode($case->pleading, true),
+                                        'evidences' => json_decode($case->evidences, true),
+                                        'verification' => json_decode($case->verification, true),
+                                        'certificate' => json_decode($case->certificate, true),
+                                        'judicial_affidavit' => json_decode($case->judicial_affidavit, true),
+                                        'notice_of_appeal' => json_decode($case->notice_of_appeal, true),
+                                        'documents' => json_decode($case->documents, true),
+                                        'memoranda' => json_decode($case->memoranda, true),
+                                        'other_files' => json_decode($case->other_files, true),
+                                    ];
                                 @endphp
-                                @if (!empty($requirements))
-                                        @foreach ($requirements as $requirement)
-                                            <p style="margin-top: 16px">{{ $requirement }}</p>
+
+                                @foreach ($uploads as $key => $files)
+                                    @if (!empty($files))
+                                        <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong><br>
+                                        @foreach ($files as $filePath)
+                                            <a href="{{ asset('storage/' . $filePath) }}" target="_blank">
+                                                View {{ basename($filePath) }}
+                                            </a><br>
                                         @endforeach
-                                @else
-                                    No requirements
-                                @endif
+                                    @endif
+                                @endforeach
                             </td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->
                                 {{-- Check and X Button - Cogie ikaw na bahala --}}
                                 @include('appealEase.judgeUser.dashboard.check')
-                                @include('appealEase.judgeUser.dashboard.cross')
                             </td>
                         </tr>
                     @endforeach

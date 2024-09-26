@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link id="nav-link" href="{{ route('judgeProfile') }}" :active="request()->routeIs('judgeProfile')">
-                        Judge Profile
+                        Justices Profile
                     </x-nav-link>
                 </div>
                 

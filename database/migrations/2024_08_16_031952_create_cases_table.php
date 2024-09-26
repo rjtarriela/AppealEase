@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('case_court');
             $table->string('case_judge');
             $table->string('judgeHead')->nullable();
-            $table->json('case_requirement'); // Store requirements as a JSON array
-            $table->enum('adminStatus', ['Affirmed', 'Acquitted', 'Sent to Supreme Court'])->nullable();
+            // $table->json('case_requirement'); // Store requirements as a JSON array
+            // $table->enum('adminStatus', ['Affirmed', 'Acquitted', 'Sent to Supreme Court', 'Pending'])->default('Pending');
+            $table->string('adminStatus')->default('Pending: 0/3');
             $table->enum('status', ['pending', 'sent', 'received'])->default('pending');
             $table->enum('approvalStatus', ['approved', 'denied'])->nullable();
             $table->enum('statusRandom', ['assigned', 'unassigned'])->default('unassigned');
+            $table->enum('verdictStatus', ['Affirmed', 'Acquitted', 'Pending'])->default('Pending');
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>AppealEase</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -70,6 +70,11 @@
     @stack('modals')
 
     @livewireScripts
+    <script>
+        function confirmSend() {
+            return confirm('Are you sure you want to send this case to the Supreme Court?');
+        }
+    </script>
 </body>
 
 </html>

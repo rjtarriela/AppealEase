@@ -7,15 +7,14 @@
                 d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z">
             </path>
         </svg>
-        Existing Judges
+        Existing Justices
     </div>
     <div class="card-body">
         <table id="judgesTable" class="table">
             <thead>
                 <tr class="text-center">
-                    <th>ID Number</th>
                     <th>Division</th>
-                    <th>Judge Name</th>
+                    <th>Justice Name</th>
                     <th>Email Address</th>
                     <th>Contact Number</th>
                 </tr>
@@ -23,12 +22,11 @@
             <tbody>
                 @if ($judges->isEmpty())
                     <tr>
-                        <td colspan="9" class="text-center">No records of judges</td>
+                        <td colspan="4" class="text-center">No records of judges</td>
                     </tr>
                 @else
                     @foreach ($judges as $judge)
                         <tr class="text-center">
-                            <td class="align-content-center">{{ $judge->id }}</td>
                             <td class="align-content-center">{{ $judge->division }}</td>
                             <td class="align-content-center">{{ $judge->name }}</td>
                             <td class="align-content-center">{{ $judge->email }}</td>

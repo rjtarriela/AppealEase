@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>AppealEase</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -50,7 +50,7 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                Division {{ $user->division }}: Judge {{ $user->name }}
+                Division {{ $user->division }}: Justice {{ $user->name }}
             </div>
         </header>
 
@@ -66,7 +66,7 @@
                 </script>
             @endif
             <div class="mx-3 my-3">
-                @include('appealEase.judgeUser.dashboard.judgeTab')
+                @include('appealEase.judgeUser.dashboard.judgeTable')
             </div>
         </main>
     </div>
@@ -74,6 +74,11 @@
     @stack('modals')
 
     @livewireScripts
+    <script>
+        function confirmDecision(decision) {
+            return confirm('Are you sure you want to submit the decision as ' + decision + '?');
+        }
+    </script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>AppealEase</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -75,6 +75,11 @@
     <script>
         function confirmDelete() {
             return confirm("Are you sure you want to delete?");
+        }
+    </script>
+    <script>
+        function confirmSubmit() {
+            return confirm('Are you sure you want to submit?');
         }
     </script>
 </body>
