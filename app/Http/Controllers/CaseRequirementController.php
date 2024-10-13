@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CaseRequirementController extends Controller
 {
-    //
+    //No need na ata. Delete na!
     public function store(Request $request)
     {
         $requirement = new Requirement();

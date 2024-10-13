@@ -11,3 +11,5 @@ class Requirement extends Model
 
     protected $table = 'reqs';
 }
+
+// DI NA ATA TO GINAGAMIT

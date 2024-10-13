@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CaseUpdate extends Controller
 {
-    //
+    //Get Division Details
     public function getDivisionDetails($divisionId)
     {
         // Get all judges in this division

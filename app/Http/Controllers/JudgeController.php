@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class JudgeController extends Controller
 {
-    //
+    //Deleted na rin ata to lahat.
     public function update(Request $request, $id)
     {
         // $request->validate([

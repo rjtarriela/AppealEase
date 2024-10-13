@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CaseController extends Controller
 {
-    //
+    // CAMIS store requested data
     public function store(Request $request)
     {
         $requiredFields = ['pleading', 'evidences', 'verification', 'certificate', 'judicial_affidavit', 'notice_of_appeal', 'documents'];
@@ -59,7 +59,6 @@ class CaseController extends Controller
         $case->case_type = $request->case_type;
         $case->case_court = $request->case_court;
         $case->case_judge = $request->case_judge;
-        // $case->case_requirement = json_encode($request->case_requirement); // maybe not needed
 
         $case->other_files = json_encode($filePaths['other_files'] ?? []);
         $case->pleading = json_encode($filePaths['pleading'] ?? []);
@@ -71,14 +70,12 @@ class CaseController extends Controller
         $case->documents = json_encode($filePaths['documents'] ?? []);
         $case->memoranda = json_encode($filePaths['memoranda'] ?? []);
 
-
         $case->save();
-
-        // dd(time());
 
         return redirect('/dashboard')->with('success', 'Case submitted successfully!');
     }
 
+    // CAMIS delete function
     public function destroy($id)
     {
         $case = CaseModel::findOrFail($id);
@@ -87,15 +84,17 @@ class CaseController extends Controller
         return redirect('/dashboard')->with('success', 'Case deleted successfully!');
     }
 
+    // Update status for case (sent)
     public function send($id)
     {
         $case = CaseModel::findOrFail($id);
-        $case->status = 'sent'; // Assuming you have a status column in your cases table
+        $case->status = 'sent';
         $case->save();
 
         return redirect('/dashboard')->with('success', 'Case sent successfully!');
     }
 
+    // Updating the vote counts, remarks, and decision
     public function approved(Request $request, $id)
     {
         $user = Auth::user();
@@ -115,15 +114,12 @@ class CaseController extends Controller
         // Get the total number of justices and their votes
         $totalJustices = $justices->count();
         $votesCount = Decision::where('case_id', $case->id)->count();
-        // dd($votesCount);
 
         if ($votesCount < $totalJustices) {
             $case->adminStatus = "Pending: $votesCount/$totalJustices";
         } else if ($votesCount == $totalJustices) {
             $case->adminStatus = "Completed";
         }
-
-        // $case->remarks = $request->input('remarks'); // remarks must show all the justices remarks.
 
         if ($votesCount == $totalJustices) {
             // Calculate the majority verdict
@@ -163,37 +159,10 @@ class CaseController extends Controller
 
         $case->save();
 
-        // // logic for number of justices in a division
-        // $user = Auth::user();
-        // $userDivision = $user->division;
-        // $divisionCount = User::where('division',  $userDivision)->where('usertype', 'judge')->count();
-
-        // dd($id);
-        // $case = CaseModel::findOrFail($id);
-
-        // // $case = new CaseModel();
-
-
-        // $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
-
-        // $case->approvalStatus = 'approved'; // Assuming you have a status column in your cases table
-        // $case->adminStatus = $request->adminStatus;
-        // $case->remarks = $request->input('remarks');
-        // $case->case_judgeID = $division->division_id; // division na dapat to
-        // $case->save();
-
-        // if ($case->case_type == 'civil') {
-        //     $division->civil_cases_solved += 1;
-        // } else if ($case->case_type == 'criminal') {
-        //     $division->criminal_cases_solved += 1;
-        // } else {
-        //     $division->special_cases_solved += 1;
-        // }
-        // $division->save();
-
         return redirect()->back()->with('success', 'Submitted successfully!');
     }
 
+    // Denied cases, idk if still needed. Already removed this function.
     public function denied(Request $request, $id)
     {
         $case = CaseModel::findOrFail($id);
@@ -203,6 +172,7 @@ class CaseController extends Controller
         return redirect('/dashboard')->with('success', 'Submitted successfully!');
     }
 
+    // Judge Randomization. Not needed.
     public function assignRandomJudge($id)
     {
         // Find the case
@@ -220,6 +190,7 @@ class CaseController extends Controller
         return redirect('/dashboard')->with('success', 'Case assigned successfully!');
     }
 
+    // Division Randomization.
     public function assignRandomDivision($id)
     {
         // Get a list of all available divisions
@@ -250,13 +221,10 @@ class CaseController extends Controller
             'special_cases_solved' => 0,
         ]);
 
-        // Update the related judges to ensure they can receive the case
-        // User::where('division', $randomDivision)->update(['statusRandom' => 'assigned']);
-
-        // Return back to the dashboard with a success message
         return redirect('/dashboard')->with('success', 'Case Assigned to a Division Successfully!');
     }
 
+    // View Cases Button? Probably Not needed too.
     public function viewCases($judgeId)
     {
         $cases = CaseModel::where('case_judgeID', $judgeId)->get();
@@ -265,6 +233,7 @@ class CaseController extends Controller
         return view('appealEase.systemAdmin.dashboard.view-cases', compact('cases', 'judge'));
     }
 
+    // Admin Status updated to "Sent to Supreme Court"
     public function sendToSupremeCourt($id)
     {
         $case = CaseModel::findOrFail($id);
@@ -274,6 +243,7 @@ class CaseController extends Controller
         return redirect('/approved-cases')->with('success', 'Case sent successfully!');
     }
 
+    // Update the requirements. CAMIS. IDK if needed too. Nvm. deleted too.
     public function update(Request $request, $id)
     {
         $case = CaseModel::findOrFail($id);
@@ -283,6 +253,7 @@ class CaseController extends Controller
         return redirect()->back()->with('success', 'Case requirements updated successfully.');
     }
 
+    // Maybe needed? but idk.
     public function storeDecision(Request $request, $caseId)
     {
         $decision = Decision::updateOrCreate(

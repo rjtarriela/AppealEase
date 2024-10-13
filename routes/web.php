@@ -24,21 +24,19 @@ Route::middleware([
     // Home Route
     Route::get('/dashboard', [LinkController::class, 'nav1'])->name('dashboard');
 
-    // System Admin Route
-    Route::put('/dashboard/{id}', [JudgeController::class, 'update']);
-    Route::delete('/dashboard/{id}', [JudgeController::class, 'destroy']);
+    // System Admin Route // Parang No need na to. deleted na rin to e
+    // Route::put('/dashboard/{id}', [JudgeController::class, 'update']);
+    // Route::delete('/dashboard/{id}', [JudgeController::class, 'destroy']);
+    // Route::get('/dashboard/judge/{id}/cases', [CaseController::class, 'viewJudgeCases']);
 
-    Route::get('/dashboard/judge/{id}/cases', [CaseController::class, 'viewJudgeCases']);
-
-
-    Route::get('/requirement-details', [LinkController::class, 'nav2'])->name('requirement-details');
-    Route::post('/requirement-details/submit', [CaseRequirementController::class, 'store']);
-    Route::put('/requirement-details/{id}', [CaseRequirementController::class, 'update']);
-    Route::delete('/requirement-details/{id}', [CaseRequirementController::class, 'destroy']);
+    // Deleted na ata to?
+    // Route::get('/requirement-details', [LinkController::class, 'nav2'])->name('requirement-details');
+    // Route::post('/requirement-details/submit', [CaseRequirementController::class, 'store']);
+    // Route::put('/requirement-details/{id}', [CaseRequirementController::class, 'update']);
+    // Route::delete('/requirement-details/{id}', [CaseRequirementController::class, 'destroy']);
 
     Route::get('/admin-management', [LinkController::class, 'nav3'])->name('admin-management');
     Route::post('/admin-management', [RegisteredUserController::class, 'store']);
-
     Route::get('/admin/division/{divisionId}/details', [CaseUpdate::class, 'getDivisionDetails']);
 
     // CAMIS Route
@@ -47,17 +45,12 @@ Route::middleware([
     Route::get('/approved-cases', [LinkController::class, 'nav2'])->name('approved-cases');
     Route::get('/denied-cases', [LinkController::class, 'nav3'])->name('denied-cases');
     Route::put('/denied-cases/edit-requirements/{id}', [CaseController::class, 'update'])->name('cases.update');
-
-    // routes/web.php
     Route::post('/dashboard/camis/send/{id}', [CaseController::class, 'send']);
     Route::post('/approved-cases/send-to-supremeCourt/{id}', [CaseController::class, 'sendToSupremeCourt']);
     Route::post('/dashboard/case-done/{id}', [CaseController::class, 'doneEdit']);
     
-
     // CLERK Route
     Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomDivision']);
-    // routes/web.php
-    // Route::post('/clerk/cases/{case_number}/receive', [ClerkController::class, 'markAsReceived'])->name('clerk.cases.receive');
 
     // JUDGE Route
     Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
@@ -65,7 +58,6 @@ Route::middleware([
     Route::post('/dashboard/judge-complete/{id}', [CaseController::class, 'storeDecision']);
     Route::get('/judgeProfile', [LinkController::class, 'nav2'])->name('judgeProfile');
     
-
-    // DIVISION
+    // DIVISION probably not needed too
     Route::get('/judge/update-role/{id}/{role}', [JudgeController::class, 'updateRole'])->name('judge.updateRole');
 });

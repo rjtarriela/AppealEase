@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LinkController extends Controller
 {
+    // REMOVE DIVISION SIDE SOON IN NAV1
     public function nav1()
     {
         if (Auth::user()->usertype == 'camis') {
@@ -18,38 +19,38 @@ class LinkController extends Controller
             $civilRequirements = Requirement::where('case_type', 'civil')->get();
             $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
             $specialRequirements = Requirement::where('case_type', 'special')->get();
-            // $cases = CaseModel::all();
 
             // hanggat di pa na sesent, nakadisplay lang yung mga cases.
             $cases = CaseModel::where('status', 'pending')->get();
+
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases'));
+
         } else if (Auth::user()->usertype == 'clerk') {
             // CLERK Dashboard
             $status = CaseModel::where('statusRandom', 'unassigned')->get();
+
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
+            
         } else if (Auth::user()->usertype == 'judge') {
             // JUDGE Dashboard
-            // $userId = Auth::id();
             $user = Auth::user();
             $caseDivision = Auth::user()->division;
-            // $cases = CaseModel::where('division', $caseDivision)->get(); //need maalis yung mga completed na
             $cases = CaseModel::where('division', $caseDivision)
                   ->whereNotIn('adminStatus', ['Completed', 'Sent to Supreme Court'])
                   ->get();
             $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
 
             return view('appealEase.judgeUser.dashboard.main', compact('cases', 'user', 'judges'));
+
         } else if (Auth::user()->usertype == 'division') {
             // DIVISION Dashboard
             $divisionID = Auth::user()->division;
             $judges = User::where('usertype', 'judge')->where('division', $divisionID)->get();
+            
             return view('appealEase.divisionAdmin.dashboard.main', compact('judges'));
+
         } else {
             // ADMIN Dashboard
-
-            // ito yung babaguhin
-            // $judges = User::where('usertype', 'judge')->get();
-
             // Get all distinct divisions from the users table
             $divisions = User::whereNotNull('division')->distinct()->pluck('division');
 
@@ -73,7 +74,7 @@ class LinkController extends Controller
                 ];
                 
             }
-            // $cases = CaseModel::all();
+
             return view('appealEase.systemAdmin.dashboard.main', compact('divisionData'));
         }
     }

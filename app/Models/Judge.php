@@ -10,3 +10,5 @@ class Judge extends Model
     use HasFactory;
     protected $table = 'users';
 }
+
+// Not sure kung ginamit to.

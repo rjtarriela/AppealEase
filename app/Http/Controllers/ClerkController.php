@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ClerkController extends Controller
 {
-    //
+    //Delete na ata to!
 
     public function markAsReceived($id)
     {

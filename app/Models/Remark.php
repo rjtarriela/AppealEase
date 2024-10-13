@@ -21,3 +21,5 @@ class Remark extends Model
         return $this->belongsTo(CaseModel::class);
     }
 }
+
+// Delete na rin ata to

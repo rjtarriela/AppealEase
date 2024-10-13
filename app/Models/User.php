@@ -75,10 +75,6 @@ class User extends Authenticatable
         return $this->hasMany(Decision::class, 'judge_id');
     }
 
-    // public function cases()
-    // {
-    //     return $this->hasMany(CaseModel::class, 'case_judgeID');
-    // }
     // Relationship with CaseSolved
     public function casesSolved()
     {
