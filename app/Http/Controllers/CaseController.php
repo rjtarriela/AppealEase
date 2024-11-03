@@ -203,6 +203,7 @@ class CaseController extends Controller
         $case = CaseModel::findOrFail($id);
         $case->statusRandom = 'assigned';
         $case->division = $randomDivision;
+        $case->deadline = now()->addYear();
 
         // Get total number of judges in the selected division
         $totalJudgesInDivision = User::where('division', $randomDivision)->where('usertype', 'judge')->count();

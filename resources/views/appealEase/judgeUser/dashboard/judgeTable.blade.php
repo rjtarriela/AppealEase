@@ -19,12 +19,14 @@
                     <th>Case Judge</th>
                     <th>Case Requirements</th>
                     <th>Actions</th>
+                    <th>Case Submitted Under Deliberation</th>
+                    <th>Period of Deliberaion</th>
                 </tr>
             </thead>
             <tbody>
                 @if ($cases->isEmpty())
                     <tr>
-                        <td colspan="6" class="text-center">No records of cases</td>
+                        <td colspan="8" class="text-center">No records of cases</td>
                     </tr>
                 @else
                     @foreach ($cases as $case)
@@ -66,6 +68,12 @@
                                 <!-- Action buttons -->
                                 {{-- Check and X Button - Cogie ikaw na bahala --}}
                                 @include('appealEase.judgeUser.dashboard.check')
+                            </td>
+                            <td class="align-content-center">
+                                {{ $case->updated_at->toFormattedDateString() }}
+                            </td>
+                            <td class="align-content-center">
+                                Until: {{ $case->deadline->toFormattedDateString() }}
                             </td>
                         </tr>
                     @endforeach

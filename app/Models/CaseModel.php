@@ -11,6 +11,10 @@ class CaseModel extends Model
 
     protected $table = 'cases';
 
+    protected $casts = [
+        'deadline' => 'datetime',
+    ];
+
     // A case can have multiple decisions from different judges
     public function decisions()
     {
