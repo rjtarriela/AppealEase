@@ -29,6 +29,14 @@ return new class extends Migration
             $table->enum('statusRandom', ['assigned', 'unassigned'])->default('unassigned');
             $table->enum('verdictStatus', ['Affirmed', 'Acquitted', 'Pending'])->default('Pending');
             $table->string('remarks')->nullable();
+
+            $table->string('litigant_name')->nullable();
+            $table->string('email_address')->nullable();
+            $table->string('contact_number', 11)->nullable();
+            $table->unsignedBigInteger('license_number')->nullable();
+            $table->string('case_title')->nullable();
+            $table->string('name_of_filing_party')->nullable();
+
             $table->timestamps();
         });
     }

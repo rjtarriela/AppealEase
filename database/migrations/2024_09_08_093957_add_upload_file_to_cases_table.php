@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('cases', function (Blueprint $table) {
-            $table->after('remarks', function ($table){
+            $table->after('remarks', function ($table) {
                 $table->json('pleading')->nullable();
                 $table->json('evidences')->nullable();
                 $table->json('verification')->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
                 'judicial_affidavit',
                 'notice_of_appeal',
                 'documents',
-                'memoranda'
+                'memoranda',
             ]);
         });
     }

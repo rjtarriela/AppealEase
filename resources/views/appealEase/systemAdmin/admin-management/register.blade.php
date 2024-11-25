@@ -12,7 +12,7 @@
                 <x-label for="usertype" value="{{ __('User Type') }}" />
                 <select x-model="userType" id="usertype" name="usertype" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" required>
                     <option value="" disabled selected>Select Role</option>
-                    <option value="camis">CAMIS</option>
+                    <option value="camis">LITIGANT</option>
                     <option value="clerk">CLERK</option>
                     <option value="judge">JUSTICE</option>
                     <!-- Add other user types as needed -->

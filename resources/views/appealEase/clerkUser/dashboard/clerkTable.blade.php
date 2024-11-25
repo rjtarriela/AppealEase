@@ -13,6 +13,8 @@
         <table id="caseTable" class="table">
             <thead>
                 <tr class="text-center">
+                    <th>Litigant Info</th>
+                    <th>Case Title</th>
                     <th>Case Number</th>
                     <th>Case Type</th>
                     <th>Lower Court</th>
@@ -24,11 +26,15 @@
             <tbody>
                 @if ($status->isEmpty())
                     <tr>
-                        <td colspan="6" class="text-center">No records of cases</td>
+                        <td colspan="8" class="text-center">No records of cases</td>
                     </tr>
                 @else
                     @foreach ($status as $case)
                         <tr class="text-center">
+                            <td class="align-content-center">
+                                @include('appealEase.camisUser.dashboard.litigantModal')
+                            </td>
+                            <td class="align-content-center">{{ $case->case_title }}</td>
                             <td class="align-content-center">{{ $case->case_number }}</td>
                             {{-- <td class="align-content-center">{{ $case->case_type }}</td> --}}
                             {{-- first letter capital --}}
@@ -36,31 +42,7 @@
                             <td class="align-content-center">{{ $case->case_court }}</td>
                             <td class="align-content-center">{{ $case->case_judge }}</td>
                             <td class="align-content-center">
-                                @php
-                                    // Decode all JSON encoded file paths
-                                    $uploads = [
-                                        'pleading' => json_decode($case->pleading, true),
-                                        'evidences' => json_decode($case->evidences, true),
-                                        'verification' => json_decode($case->verification, true),
-                                        'certificate' => json_decode($case->certificate, true),
-                                        'judicial_affidavit' => json_decode($case->judicial_affidavit, true),
-                                        'notice_of_appeal' => json_decode($case->notice_of_appeal, true),
-                                        'documents' => json_decode($case->documents, true),
-                                        'memoranda' => json_decode($case->memoranda, true),
-                                        'other_files' => json_decode($case->other_files, true),
-                                    ];
-                                @endphp
-
-                                @foreach ($uploads as $key => $files)
-                                    @if (!empty($files))
-                                        <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong><br>
-                                        @foreach ($files as $filePath)
-                                            <a href="{{ asset('storage/' . $filePath) }}" target="_blank">
-                                                View {{ basename($filePath) }}
-                                            </a><br>
-                                        @endforeach
-                                    @endif
-                                @endforeach
+                                @include('appealEase.camisUser.dashboard.requirementModal')
                             </td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->

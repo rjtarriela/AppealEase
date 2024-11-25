@@ -24,7 +24,9 @@ return new class extends Migration
     {
         Schema::table('cases', function (Blueprint $table) {
             //
-            Schema::dropColumn('deadline');
+            $table->dropColumn([
+                'deadline',
+            ]);
         });
     }
 };

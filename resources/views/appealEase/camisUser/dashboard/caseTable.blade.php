@@ -13,7 +13,9 @@
         <table id="caseTable" class="table">
             <thead>
                 <tr class="text-center">
+                    <th>Litigant Info</th>
                     <th>Case Number</th>
+                    <th>Case Title</th>
                     <th>Case Type</th>
                     <th>Lower Court</th>
                     <th>Case Judge</th>
@@ -24,43 +26,24 @@
             <tbody>
                 @if ($cases->isEmpty())
                     <tr>
-                        <td colspan="6" class="text-center">No records of cases</td>
+                        <td colspan="8" class="text-center">No records of cases</td>
                     </tr>
                 @else
                     @foreach ($cases as $case)
                         <tr class="text-center">
+                            {{-- Create a modal for the litigant --}}
+                            <td class="align-content-center">@include('appealEase.camisUser.dashboard.litigantModal')</td>
+
                             <td class="align-content-center">{{ $case->case_number }}</td>
-                            {{-- <td class="align-content-center">{{ $case->case_type }}</td> --}}
+                            <td class="align-content-center">{{ ucfirst($case->case_title) }}</td>
                             {{-- first letter capital --}}
                             <td class="align-content-center">{{ ucfirst($case->case_type) }}</td>
                             <td class="align-content-center">{{ $case->case_court }}</td>
                             <td class="align-content-center">{{ $case->case_judge }}</td>
-                            <td class="align-content-center">
-                                @php
-                                    // Decode all JSON encoded file paths
-                                    $uploads = [
-                                        'pleading' => json_decode($case->pleading, true),
-                                        'evidences' => json_decode($case->evidences, true),
-                                        'verification' => json_decode($case->verification, true),
-                                        'certificate' => json_decode($case->certificate, true),
-                                        'judicial_affidavit' => json_decode($case->judicial_affidavit, true),
-                                        'notice_of_appeal' => json_decode($case->notice_of_appeal, true),
-                                        'documents' => json_decode($case->documents, true),
-                                        'memoranda' => json_decode($case->memoranda, true),
-                                        'other_files' => json_decode($case->other_files, true),
-                                    ];
-                                @endphp
 
-                                @foreach ($uploads as $key => $files)
-                                    @if (!empty($files))
-                                        <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong><br>
-                                        @foreach ($files as $filePath)
-                                            <a href="{{ asset('storage/' . $filePath) }}" target="_blank">
-                                                View {{ basename($filePath) }}
-                                            </a><br>
-                                        @endforeach
-                                    @endif
-                                @endforeach
+                            {{-- Put inside a modal --}}
+                            <td class="align-content-center">
+                                @include('appealEase.camisUser.dashboard.requirementModal')
                             </td>
                             <td class="align-content-center">
                                 <!-- Action buttons -->
@@ -68,7 +51,8 @@
                                 <form action="{{ url('/dashboard/camis/send/' . $case->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
-                                    <button class="btn btn-outline-success edit-btn" type="submit"  onclick="return confirmSubmit()">
+                                    <button class="btn btn-outline-success edit-btn" type="submit"
+                                        onclick="return confirmSubmit()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                             viewBox="0 0 100 100">
                                             <path d="M20 20 L80 50 L20 80 Z" fill="none" stroke="green"

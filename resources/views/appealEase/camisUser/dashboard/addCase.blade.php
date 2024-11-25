@@ -20,6 +20,36 @@
                     <form action="/dashboard/camis/submit" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
+                            <label for="name_of_filing_party" class="form-label">Name of Filing Party:</label>
+                            <input type="text" class="form-control" id="name_of_filing_party" placeholder="Enter Name of Filing Party"
+                                name="name_of_filing_party" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="litigant_name" class="form-label">Litigant Name:</label>
+                            <input type="text" class="form-control" id="litigant_name" placeholder="Enter Litigant Name"
+                                name="litigant_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email_address" class="form-label">Email Address:</label>
+                            <input type="email" class="form-control" id="email_address" placeholder="Enter Email Address"
+                                name="email_address" required>
+                        </div>
+                        <div class="mb-3">
+                            <x-label for="contact_number">Contact Number</x-label>
+                            <input type="text" class="form-control" id="contact_number" name="contact_number" pattern="\d{11}" placeholder="Please enter exactly 11 digits" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="license_number" class="form-label">License Number:</label>
+                            <input type="number" class="form-control" id="license_number" placeholder="Enter License Number"
+                                name="license_number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="case_title" class="form-label">Case Title:</label>
+                            <input type="text" class="form-control" id="case_title" placeholder="Enter Case Title"
+                                name="case_title" required>
+                        </div>
+                        
+                        <div class="mb-3">
                             <label for="case_number" class="form-label">Case Number:</label>
                             <input type="number" class="form-control" id="case_number" placeholder="Enter Case Number"
                                 name="case_number" required>
@@ -83,11 +113,11 @@
                                     <input type="file" class="form-control" id="evidences" name="evidences[]"
                                         multiple required>
                                 </div>
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="judicial_affidavit" class="form-label">Judicial Affidavit:</label>
                                     <input type="file" class="form-control" id="judicial_affidavit" name="judicial_affidavit[]"
                                         multiple required>
-                                </div>
+                                </div> --}}
                             </div>
 
                         </template>
@@ -114,7 +144,7 @@
 
 
                         <div class="mb-3">
-                            <label for="other_files" class="form-label">Other File/s (Optional):</label>
+                            <label for="other_files" class="form-label">Annexes (Optional):</label>
                             <input type="file" class="form-control" id="other_files" name="other_files[]" multiple>
                         </div>
 
