@@ -201,7 +201,7 @@ class CaseController extends Controller
 
         // Update the case with the randomly selected division
         $case = CaseModel::findOrFail($id);
-        $case->statusRandom = 'assigned';
+        // $case->statusRandom = 'assigned';
         $case->division = $randomDivision;
         $case->deadline = now()->addYear();
 
@@ -223,6 +223,7 @@ class CaseController extends Controller
         ]);
 
         return redirect('/dashboard')->with('success', 'Case Assigned to a Division Successfully!');
+        // ->with('randomDivision', $randomDivision);
     }
 
     // View Cases Button? Probably Not needed too.
