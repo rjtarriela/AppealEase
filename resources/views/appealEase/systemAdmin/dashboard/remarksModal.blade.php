@@ -16,12 +16,16 @@
             </div>
             <div class="modal-body">
                 <ul style="text-align: left">
-                    @foreach ($case->decisions as $decision)
-                        <li>
-                            <strong>{{ $decision->judge->name ?? 'No Remarks' }}:</strong>
-                            {{ $decision->remarks ?? 'No remarks' }}
-                        </li>
-                    @endforeach
+                    @if ($case->decisions->isEmpty())
+                        <li>No remarks available!</li>
+                    @else
+                        @foreach ($case->decisions as $decision)
+                            <li>
+                                <strong>{{ $decision->judge->name ?? 'Unknown Judge' }}:</strong>
+                                {{ $decision->remarks ?? 'No remarks' }}
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <div class="modal-footer">
@@ -30,4 +34,3 @@
         </div>
     </div>
 </div>
-

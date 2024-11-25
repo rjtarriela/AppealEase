@@ -15,7 +15,7 @@ class CaseUpdate extends Controller
         $judges = User::where('division', $divisionId)->where('usertype', 'judge')->get();
 
         // Get cases assigned to this division
-        $cases = CaseModel::where('division', $divisionId)->get();
+        $cases = CaseModel::where('division', $divisionId)->with('decisions.judge')->get();
 
         // Pass data to a view that will render the modal content
         return view('appealEase.systemAdmin.dashboard.divisionDetails', compact('judges', 'cases'));

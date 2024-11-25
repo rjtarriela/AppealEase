@@ -35,6 +35,7 @@
                     <th>Remarks</th>
                 </tr>
             </thead>
+            
             <tbody>
                 @if ($cases->isEmpty())
                     <tr>
