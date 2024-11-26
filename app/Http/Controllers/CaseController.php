@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifEmail;
 use App\Models\CaseModel;
 use App\Models\CasesSolved;
 use App\Models\Decision;
@@ -11,6 +12,7 @@ use App\Models\Requirement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CaseController extends Controller
@@ -260,6 +262,22 @@ class CaseController extends Controller
       'civil_cases_solved' => 0,
       'special_cases_solved' => 0,
     ]);
+
+
+    // para sa email
+    $receiver = User::where('division', $randomDivision)->where('usertype', 'judge')->get();
+    foreach ($receiver as $user) {
+      $data = [
+        'name' => $user->name,               // Judge's name
+        'case_number' => $case->case_number, // Case number (dynamically passed)
+        'case_type' => $case->case_type,     // Case type (dynamically passed)
+        'division' => $randomDivision,       // Division
+        'date' => now()->toFormattedDateString(), // Current date in a readable format
+      ];
+
+      // Send the email
+      Mail::to($user->email)->send(new NotifEmail($data));
+    }
 
     return redirect('/dashboard')->with('success', 'Case Assigned to a Division Successfully!');
     // ->with('randomDivision', $randomDivision);
