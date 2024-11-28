@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::get('/', function () {
-    return view('auth.login');
-    // return view('welcome');
+    // return view('auth.login');
+    return view('welcome');
 });
 
 Route::middleware([

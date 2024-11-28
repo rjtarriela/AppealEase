@@ -44,11 +44,12 @@
 <body>
     <div class="email-container">
         <div class="email-header">
-            Case Assigned to You for Review
+            Case Assignment
         </div>
         <div class="email-content">
             <p>Dear <strong>{{ $data['name'] }}</strong>,</p>
-            <p>We are pleased to inform you that a new case has been assigned to you for review. Please find the details
+            <p>We are pleased to inform you that the case <strong>{{ $data['case_number'] }}</strong> has been
+                successfully assigned. Please find the details
                 below:</p>
             <ul>
                 <li><strong>Case Number:</strong> {{ $data['case_number'] }}</li>
@@ -56,9 +57,8 @@
                 <li><strong>Assigned Division:</strong> {{ $data['division'] }}</li>
                 <li><strong>Submitted On:</strong> {{ $data['date'] }}</li>
             </ul>
-            <p>You can access the case and provide your inputs via your dashboard. Kindly ensure that the case is
-                reviewed and addressed in a timely manner.</p>
-            <p>If you have any questions or require additional information, please feel free to contact us.</p>
+            <p>If you have any questions or need further assistance, please do not hesitate to reach out.</p>
+            <p>Thank you for your attention to this matter.</p>
         </div>
         <div class="email-footer">
             Best regards,

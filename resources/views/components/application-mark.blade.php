@@ -4,4 +4,4 @@
 </svg> --}}
 
 
-<img src="{{ asset('images/unnamed-removebg-preview.png')}}" alt="" width="60" height="60">
+<img src="{{ asset('images/android-chrome-512x512.png')}}" alt="" width="50" height="50">
