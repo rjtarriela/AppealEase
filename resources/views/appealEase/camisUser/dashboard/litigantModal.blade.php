@@ -42,7 +42,7 @@
                         <td style="text-align: left">: {{ $case->contact_number }}</td>
                     </tr>
                     <tr>
-                        <td style="text-align: left">License Number</td>
+                        <td style="text-align: left">Roll Number</td>
                         <td style="text-align: left">: {{ $case->license_number }}</td>
                     </tr>
                 </table>

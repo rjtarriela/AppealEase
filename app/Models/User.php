@@ -31,6 +31,7 @@ class User extends Authenticatable
         'usertype',
         'contact_number',
         'division',
+        'atty_number',
         // 'criminal_cases_solved',
         // 'civil_cases_solved',
         // 'special_cases_solved',

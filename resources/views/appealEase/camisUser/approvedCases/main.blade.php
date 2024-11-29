@@ -41,7 +41,7 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100">
-        @include('appealEase.camisUser.navigation-menu')
+        @include('appealEase.clerkUser.navigation-menu')
 
         <!-- Page Heading -->
         <header class="bg-white shadow">

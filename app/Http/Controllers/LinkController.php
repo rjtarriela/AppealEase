@@ -22,8 +22,10 @@ class LinkController extends Controller
 
             // hanggat di pa na sesent, nakadisplay lang yung mga cases.
             $cases = CaseModel::where('status', 'pending')->get();
+            
+            $user = Auth::user();
 
-            return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases'));
+            return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases', 'user'));
 
         } else if (Auth::user()->usertype == 'clerk') {
             // CLERK Dashboard
@@ -81,7 +83,7 @@ class LinkController extends Controller
 
     public function nav2()
     {
-        if (Auth::user()->usertype == 'camis') {
+        if (Auth::user()->usertype == 'clerk') {
             $cases = CaseModel::where('adminStatus', 'Completed')->get();
             return view('appealEase.camisUser.approvedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {

@@ -27,21 +27,21 @@
                         <div class="mb-3">
                             <label for="litigant_name" class="form-label">Litigant Name:</label>
                             <input type="text" class="form-control" id="litigant_name" placeholder="Enter Litigant Name"
-                                name="litigant_name" required>
+                                name="litigant_name" value="{{ $user->name }}"  required>
                         </div>
                         <div class="mb-3">
                             <label for="email_address" class="form-label">Email Address:</label>
                             <input type="email" class="form-control" id="email_address" placeholder="Enter Email Address"
-                                name="email_address" required>
+                                name="email_address" value="{{ $user->email }}"  required>
                         </div>
                         <div class="mb-3">
                             <x-label for="contact_number">Contact Number</x-label>
-                            <input type="text" class="form-control" id="contact_number" name="contact_number" pattern="\d{11}" placeholder="Please enter exactly 11 digits" required>
+                            <input type="text" class="form-control" id="contact_number" name="contact_number" pattern="\d{11}" placeholder="Please enter exactly 11 digits" value="{{ $user->contact_number }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="license_number" class="form-label">License Number:</label>
+                            <label for="license_number" class="form-label">Roll Number:</label>
                             <input type="number" class="form-control" id="license_number" placeholder="Enter License Number"
-                                name="license_number" required>
+                                name="license_number" value="{{ $user->atty_number }}"  required>
                         </div>
                         <div class="mb-3">
                             <label for="case_title" class="form-label">Case Title:</label>
@@ -83,7 +83,7 @@
                                         required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="evidences" class="form-label">Evidences:</label>
+                                    <label for="evidences" class="form-label">Evidences (Judicial Affidavit, Written Agreements, etc):</label>
                                     <input type="file" class="form-control" id="evidences" name="evidences[]"
                                         multiple required>
                                 </div>
@@ -109,7 +109,7 @@
                         <template x-if="caseType === 'criminal'">
                             <div>
                                 <div class="mb-3">
-                                    <label for="evidences" class="form-label">Evidences:</label>
+                                    <label for="evidences" class="form-label">Evidences (Judicial Affidavit, Written Agreements, etc):</label>
                                     <input type="file" class="form-control" id="evidences" name="evidences[]"
                                         multiple required>
                                 </div>

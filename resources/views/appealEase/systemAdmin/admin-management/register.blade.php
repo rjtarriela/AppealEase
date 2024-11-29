@@ -30,7 +30,21 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <!-- Additional fields for 'judge' userType -->
+            <!-- Additional fields for 'litigant' userType -->
+            <template x-if="userType === 'camis'">
+                <div>
+                    <div class="mt-4">
+                        <x-label for="contact_number">Contact Number</x-label>
+                        <input type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="contact_number" name="contact_number" pattern="\d{11}" title="Please enter exactly 11 digits" required>
+                    </div>
+                    <div class="mt-4">
+                        <x-label for="atty_number">Role of Attorney's Number</x-label>
+                        <input type="number" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="atty_number" name="atty_number" min="0" required>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Additional fields for 'justice' userType -->
             <template x-if="userType === 'judge'">
                 <div>
                     <div class="mt-4">

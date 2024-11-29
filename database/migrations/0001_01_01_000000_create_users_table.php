@@ -23,6 +23,7 @@ return new class extends Migration
 
             // Add contact_number as a string with a max length of 11
             $table->string('contact_number', 11)->nullable();
+            $table->bigInteger('atty_number')->nullable();
 
             // Add division as a tinyInteger
             $table->tinyInteger('division')->nullable()->index();
