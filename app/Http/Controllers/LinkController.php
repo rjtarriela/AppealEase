@@ -22,35 +22,31 @@ class LinkController extends Controller
 
             // hanggat di pa na sesent, nakadisplay lang yung mga cases.
             $cases = CaseModel::where('status', 'pending')->get();
-            
+
             $user = Auth::user();
 
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases', 'user'));
-
         } else if (Auth::user()->usertype == 'clerk') {
             // CLERK Dashboard
             $status = CaseModel::where('statusRandom', 'unassigned')->get();
 
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
-            
         } else if (Auth::user()->usertype == 'judge') {
             // JUDGE Dashboard
             $user = Auth::user();
             $caseDivision = Auth::user()->division;
             $cases = CaseModel::where('division', $caseDivision)
-                  ->whereNotIn('adminStatus', ['Completed', 'Sent to Supreme Court'])
-                  ->get();
+                ->whereNotIn('adminStatus', ['Completed', 'Sent to Supreme Court'])
+                ->get();
             $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
 
             return view('appealEase.judgeUser.dashboard.main', compact('cases', 'user', 'judges'));
-
         } else if (Auth::user()->usertype == 'division') {
             // DIVISION Dashboard
             $divisionID = Auth::user()->division;
             $judges = User::where('usertype', 'judge')->where('division', $divisionID)->get();
-            
-            return view('appealEase.divisionAdmin.dashboard.main', compact('judges'));
 
+            return view('appealEase.divisionAdmin.dashboard.main', compact('judges'));
         } else {
             // ADMIN Dashboard
             // Get all distinct divisions from the users table
@@ -74,7 +70,6 @@ class LinkController extends Controller
                     'civil_cases_solved' => $caseSolved->civil_cases_solved ?? 0,
                     'special_cases_solved' => $caseSolved->special_cases_solved ?? 0,
                 ];
-                
             }
 
             return view('appealEase.systemAdmin.dashboard.main', compact('divisionData'));
@@ -87,11 +82,12 @@ class LinkController extends Controller
             $cases = CaseModel::where('adminStatus', 'Completed')->get();
             return view('appealEase.camisUser.approvedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {
-            $civilRequirements = Requirement::where('case_type', 'civil')->get();
-            $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
-            $specialRequirements = Requirement::where('case_type', 'special')->get();
+            // $civilRequirements = Requirement::where('case_type', 'civil')->get();
+            // $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
+            // $specialRequirements = Requirement::where('case_type', 'special')->get();
 
-            return view('appealEase.systemAdmin.requirement-details.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements'));
+            // return view('appealEase.systemAdmin.requirement-details.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements'));
+            return view('appealEase.systemAdmin.admin-management.main');
         } else if (Auth::user()->usertype == 'judge') {
             $caseDivision = Auth::user()->division;
             $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
@@ -102,14 +98,21 @@ class LinkController extends Controller
 
     public function nav3()
     {
-        if (Auth::user()->usertype == 'camis') {
-            $civilRequirements = Requirement::where('case_type', 'civil')->get();
-            $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
-            $specialRequirements = Requirement::where('case_type', 'special')->get();
-            $cases = CaseModel::where('approvalStatus', 'denied')->get();
-            return view('appealEase.camisUser.deniedCases.main', compact('cases', 'civilRequirements', 'criminalRequirements', 'specialRequirements'));
-        } else if (Auth::user()->usertype == 'admin') {
-            return view('appealEase.systemAdmin.admin-management.main');
+        // if (Auth::user()->usertype == 'camis') {
+        //     // $civilRequirements = Requirement::where('case_type', 'civil')->get();
+        //     // $criminalRequirements = Requirement::where('case_type', 'criminal')->get();
+        //     // $specialRequirements = Requirement::where('case_type', 'special')->get();
+        //     // $cases = CaseModel::where('approvalStatus', 'denied')->get();
+        //     // return view('appealEase.camisUser.deniedCases.main', compact('cases', 'civilRequirements', 'criminalRequirements', 'specialRequirements'));
+
+        //     $litigants = User::where('usertype', 'litigant')->get();
+
+        //     return view('appealEase.systemAdmin.litigant-profile.main', compact('litigants'));
+        // } else 
+        if (Auth::user()->usertype == 'admin') {
+            $litigants = User::where('usertype', 'camis')->get();
+
+            return view('appealEase.systemAdmin.litigant-profile.main', compact('litigants'));
         }
     }
 }

@@ -21,6 +21,9 @@
                     <x-nav-link id="nav-link" href="{{ route('admin-management') }}" :active="request()->routeIs('admin-management')">
                         Admin Management
                     </x-nav-link>
+                    <x-nav-link id="nav-link" href="{{ route('litigant-profile') }}" :active="request()->routeIs('litigant-profile')">
+                        Litigant Profile
+                    </x-nav-link>
                 </div>
                 
             </div>
