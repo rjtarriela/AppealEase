@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CaseCompleteMail;
 use App\Mail\NotifEmail;
 use App\Models\CaseModel;
 use App\Models\CasesSolved;
@@ -135,7 +136,7 @@ class CaseController extends Controller
     return redirect('/dashboard')->with('success', 'Case sent successfully!');
   }
 
-  // Updating the vote counts, remarks, and decision
+  // Updating the vote counts, remarks, and decision, JUSTICES
   public function approved(Request $request, $id)
   {
     $user = Auth::user();
@@ -195,22 +196,34 @@ class CaseController extends Controller
           $division->special_cases_solved += 1;
         }
         $division->save();
-      } else {
+      } else if ($affirmedVotes == 0 && $acquittedVotes == 0) {
         $case->verdictStatus = 'Inhibited';
-        // $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
-        // if ($case->case_type == 'civil') {
-        //   $division->civil_cases_solved += 1;
-        // } elseif ($case->case_type == 'criminal') {
-        //   $division->criminal_cases_solved += 1;
-        // } else {
-        //   $division->special_cases_solved += 1;
-        // }
-        // $division->save();
+      } else {
+        $case->verdictStatus = 'Status Quo';
+        $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
+        if ($case->case_type == 'civil') {
+          $division->civil_cases_solved += 1;
+        } elseif ($case->case_type == 'criminal') {
+          $division->criminal_cases_solved += 1;
+        } else {
+          $division->special_cases_solved += 1;
+        }
+        $division->save();
       }
     }
 
     $case->save();
 
+    if ($votesCount == $totalJustices) {
+      $data = [
+        'case_number' => $case->case_number, // Case number (dynamically passed)
+        'case_type' => $case->case_type,     // Case type (dynamically passed)
+        'division' => $case->division,       // Division
+        'verdictStatus' => $case->verdictStatus,
+        'date' => now()->toFormattedDateString(), // Current date in a readable format
+      ];
+      Mail::to($case->email_address)->send(new CaseCompleteMail($data));
+    }
     return redirect()->back()->with('success', 'Submitted successfully!');
   }
 

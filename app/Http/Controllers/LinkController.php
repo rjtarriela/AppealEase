@@ -21,7 +21,8 @@ class LinkController extends Controller
             $specialRequirements = Requirement::where('case_type', 'special')->get();
 
             // hanggat di pa na sesent, nakadisplay lang yung mga cases.
-            $cases = CaseModel::where('status', 'pending')->get();
+            $userCase = Auth::user()->email;
+            $cases = CaseModel::where('status', 'pending')->where('email_address', "{$userCase}")->get();
 
             $user = Auth::user();
 
@@ -79,7 +80,8 @@ class LinkController extends Controller
     public function nav2()
     {
         if (Auth::user()->usertype == 'camis') {
-            $cases = CaseModel::where('adminStatus', 'Completed')->get();
+            $userCases = Auth::user()->email;
+            $cases = CaseModel::where('adminStatus', 'Completed')->where('email_address', "{$userCases}")->get();
             return view('appealEase.camisUser.approvedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {
             // $civilRequirements = Requirement::where('case_type', 'civil')->get();
