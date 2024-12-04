@@ -27,7 +27,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'sent', 'received'])->default('pending');
             $table->enum('approvalStatus', ['approved', 'denied'])->nullable();
             $table->enum('statusRandom', ['assigned', 'unassigned'])->default('unassigned');
-            $table->enum('verdictStatus', ['Affirmed', 'Acquitted', 'Pending'])->default('Pending');
+            $table->enum('verdictStatus', ['Affirmed', 'Acquitted', 'Pending', 'Inhibited'])->default('Pending');
             $table->string('remarks')->nullable();
 
             $table->string('litigant_name')->nullable();

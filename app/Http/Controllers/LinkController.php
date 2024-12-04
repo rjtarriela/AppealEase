@@ -78,7 +78,7 @@ class LinkController extends Controller
 
     public function nav2()
     {
-        if (Auth::user()->usertype == 'clerk') {
+        if (Auth::user()->usertype == 'camis') {
             $cases = CaseModel::where('adminStatus', 'Completed')->get();
             return view('appealEase.camisUser.approvedCases.main', compact('cases'));
         } else if (Auth::user()->usertype == 'admin') {

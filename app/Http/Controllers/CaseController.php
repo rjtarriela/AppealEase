@@ -184,7 +184,7 @@ class CaseController extends Controller
           $division->special_cases_solved += 1;
         }
         $division->save();
-      } else {
+      } else if ($affirmedVotes < $acquittedVotes) {
         $case->verdictStatus = 'Acquitted';
         $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
         if ($case->case_type == 'civil') {
@@ -195,6 +195,17 @@ class CaseController extends Controller
           $division->special_cases_solved += 1;
         }
         $division->save();
+      } else {
+        $case->verdictStatus = 'Inhibited';
+        // $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
+        // if ($case->case_type == 'civil') {
+        //   $division->civil_cases_solved += 1;
+        // } elseif ($case->case_type == 'criminal') {
+        //   $division->criminal_cases_solved += 1;
+        // } else {
+        //   $division->special_cases_solved += 1;
+        // }
+        // $division->save();
       }
     }
 
@@ -242,7 +253,7 @@ class CaseController extends Controller
 
     // Update the case with the randomly selected division
     $case = CaseModel::findOrFail($id);
-    // $case->statusRandom = 'assigned';
+    $case->statusRandom = 'assigned';
     $case->division = $randomDivision;
     $case->deadline = now()->addYear();
 
@@ -281,7 +292,7 @@ class CaseController extends Controller
 
     Mail::to($case->email_address)->send(new NotifEmail($data));
 
-    return redirect('/dashboard')->with('success', 'Case Assigned to a Division Successfully!');
+    return redirect('/dashboard')->with('success', "Case Assigned to Division {$case->division} Successfully!");
     // ->with('randomDivision', $randomDivision);
   }
 

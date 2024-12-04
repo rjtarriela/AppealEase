@@ -28,9 +28,14 @@
                     </div>
 
                     <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="decision" value="Affirmed" onclick="return confirmDecision('Affirmed')">Affirmed</button>
-                        <button type="submit" class="btn btn-primary" name="decision" value="Acquitted" onclick="return confirmDecision('Acquitted')">Acquitted</button>
+                    <div class="modal-footer" style="justify-content: space-between">
+                        <div>
+                            <button type="submit" class="btn btn-primary" name="decision" value="Inhibited" onclick="return confirmDecision('Inhibit')">Inhibit</button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" name="decision" value="Affirmed" onclick="return confirmDecision('Affirmed')">Affirmed</button>
+                            <button type="submit" class="btn btn-primary" name="decision" value="Acquitted" onclick="return confirmDecision('Acquitted')">Acquitted</button>
+                        </div>
                     </div>
                 </form>
             </div>

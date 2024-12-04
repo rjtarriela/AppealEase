@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('case_id')->constrained('cases')->onDelete('cascade');
             $table->foreignId('judge_id')->constrained('users')->onDelete('cascade');
-            $table->enum('decision', ['affirmed', 'acquitted', 'pending'])->default('pending');
+            $table->enum('decision', ['affirmed', 'acquitted', 'inhibited', 'pending'])->default('pending');
             $table->text('remarks')->nullable();
             $table->timestamps();
         });

@@ -62,3 +62,8 @@ Route::middleware([
     // DIVISION probably not needed too
     Route::get('/judge/update-role/{id}/{role}', [JudgeController::class, 'updateRole'])->name('judge.updateRole');
 });
+
+// Route::get('/register', function () {
+//     return view('errors.404');
+// });
+
