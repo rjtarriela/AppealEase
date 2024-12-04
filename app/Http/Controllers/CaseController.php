@@ -279,6 +279,8 @@ class CaseController extends Controller
       Mail::to($user->email)->send(new NotifEmail($data));
     }
 
+    Mail::to($case->email_address)->send(new NotifEmail($data));
+
     return redirect('/dashboard')->with('success', 'Case Assigned to a Division Successfully!');
     // ->with('randomDivision', $randomDivision);
   }

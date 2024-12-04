@@ -1064,7 +1064,7 @@
                                 <h2 class="text-xl font-semibold text-black">Step 2: Verification</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
-                                    •The AppealEase System Admin will verify your credentials to confirm you are a licensed lawyer or litigant. •This process typically takes a few hours to one day.
+                                    •The AppealEase System Admin will verify your credentials to confirm you are a licensed lawyer or litigant.<br> •This process typically takes a few hours to one day.
                                 </p>
                             </div>
 
