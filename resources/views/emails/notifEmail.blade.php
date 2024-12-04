@@ -47,7 +47,7 @@
             Case Assignment
         </div>
         <div class="email-content">
-            <p>Dear <strong>{{ $data['name'] }}</strong>,</p>
+            <p>Dear <strong>Ma'am/Sir</strong>,</p>
             <p>We are pleased to inform you that the case <strong>{{ $data['case_number'] }}</strong> has been
                 successfully assigned. Please find the details
                 below:</p>

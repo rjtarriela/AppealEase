@@ -30,7 +30,7 @@ class NotifEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'AppealEase: Case Assignment to Your Account',
+            subject: 'AppealEase: Case Assignment',
         );
     }
 
