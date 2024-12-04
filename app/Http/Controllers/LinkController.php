@@ -29,7 +29,11 @@ class LinkController extends Controller
             return view('appealEase.camisUser.dashboard.main', compact('civilRequirements', 'criminalRequirements', 'specialRequirements', 'cases', 'user'));
         } else if (Auth::user()->usertype == 'clerk') {
             // CLERK Dashboard
-            $status = CaseModel::where('statusRandom', 'unassigned')->get();
+            // $status = CaseModel::whereNotNull('statusRandom')->where('verdictStatus')->get();
+            $status = CaseModel::whereNotNull('statusRandom')
+                   ->whereNotIn('verdictStatus', ['Affirmed', 'Acquitted', 'Status Quo'])
+                   ->get();
+
 
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
         } else if (Auth::user()->usertype == 'judge') {

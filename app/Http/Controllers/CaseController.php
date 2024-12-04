@@ -175,6 +175,7 @@ class CaseController extends Controller
       // Update verdictStatus based on majority votes
       if ($affirmedVotes > $acquittedVotes) {
         $case->verdictStatus = 'Affirmed';
+        // $case->statusRandom = 'assigned';
         // Update the division's solved case counts
         $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
         if ($case->case_type == 'civil') {
@@ -187,6 +188,7 @@ class CaseController extends Controller
         $division->save();
       } else if ($affirmedVotes < $acquittedVotes) {
         $case->verdictStatus = 'Acquitted';
+        // $case->statusRandom = 'assigned';
         $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
         if ($case->case_type == 'civil') {
           $division->civil_cases_solved += 1;
@@ -198,8 +200,10 @@ class CaseController extends Controller
         $division->save();
       } else if ($affirmedVotes == 0 && $acquittedVotes == 0) {
         $case->verdictStatus = 'Inhibited';
+        $case->statusRandom = 'unassigned';
       } else {
         $case->verdictStatus = 'Status Quo';
+        // $case->statusRandom = 'assigned';
         $division = CasesSolved::where('division_id', $case->division)->firstOrFail();
         if ($case->case_type == 'civil') {
           $division->civil_cases_solved += 1;
@@ -268,10 +272,14 @@ class CaseController extends Controller
     $case = CaseModel::findOrFail($id);
     $case->statusRandom = 'assigned';
     $case->division = $randomDivision;
+    $case->verdictStatus = 'Pending';
     $case->deadline = now()->addYear();
+
+    Decision::where('case_id', $case->id)->delete();
 
     // Get total number of judges in the selected division
     $totalJudgesInDivision = User::where('division', $randomDivision)->where('usertype', 'judge')->count();
+
 
     $votesReceived = 0; // Initial vote count (assuming 0 if not started yet)
     $case->adminStatus = 'Pending: ' . $votesReceived . '/' . $totalJudgesInDivision;

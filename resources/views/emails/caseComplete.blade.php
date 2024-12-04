@@ -13,8 +13,8 @@
         <li><strong>Case Number:</strong> {{ $data['case_number'] }}</li>
         <li><strong>Case Type:</strong> {{ ucfirst($data['case_type']) }}</li>
         <li><strong>Division:</strong> {{ $data['division'] }}</li>
-        <li><strong>Date Completed:</strong> {{ $data['date'] }}</li><br>
-        <li><strong>VERDICT:</strong> {{ $data['verdictStatus'] }}</li>
+        <li><strong>Date Completed:</strong> {{ $data['date'] }}</li>
+        <li style="margin-top: 15px"><strong>VERDICT:</strong> {{ $data['verdictStatus'] }}</li>
     </ul>
     <p>If you have any questions or require further assistance, feel free to contact us.</p>
     <p>Thank you for your trust in our services.</p>
