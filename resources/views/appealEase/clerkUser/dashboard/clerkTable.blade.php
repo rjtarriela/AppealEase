@@ -65,7 +65,7 @@
                                             {{ $case->division }}
                                         </button>
                                     @else
-                                        <button class="btn btn-primary">Raffle</button>
+                                        <button class="btn btn-primary" onclick="return confirmRaffle()">Raffle</button>
                                     @endif
                                 </form>
                             </td>
