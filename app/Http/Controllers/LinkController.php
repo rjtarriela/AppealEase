@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CaseModel;
 use App\Models\CasesSolved;
+use App\Models\History;
 use App\Models\Requirement;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,8 +32,8 @@ class LinkController extends Controller
             // CLERK Dashboard
             // $status = CaseModel::whereNotNull('statusRandom')->where('verdictStatus')->get();
             $status = CaseModel::whereNotNull('statusRandom')
-                   ->whereNotIn('verdictStatus', ['Affirmed', 'Acquitted', 'Status Quo'])
-                   ->get();
+                ->whereNotIn('verdictStatus', ['Affirmed', 'Acquitted', 'Status Quo'])
+                ->get();
 
 
             return view('appealEase.clerkUser.dashboard.main', compact('status'));
@@ -99,6 +100,10 @@ class LinkController extends Controller
             $judges = User::where('division', $caseDivision)->where('usertype', 'judge')->get();
 
             return view('appealEase.judgeUser.judgeProfile.main', compact('judges'));
+        } else if (Auth::user()->usertype == 'clerk') {
+            // $historyLogs = History::whereNotNull('case_number')->orderBy('created_at', 'desc')->get();
+            $historyLogs = History::with('case')->orderBy('created_at', 'desc')->get();
+            return view('appealEase.clerkUser.historyLog.main', compact('historyLogs'));
         }
     }
 

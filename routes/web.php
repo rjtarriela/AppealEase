@@ -52,6 +52,7 @@ Route::middleware([
     
     // CLERK Route
     Route::post('/dashboard/cases/randomize/{id}', [CaseController::class, 'assignRandomDivision']);
+    Route::get('/history-logs', [LinkController::class, 'nav2'])->name('history-logs');
 
     // JUDGE Route
     Route::post('/dashboard/judge-approved/{id}', [CaseController::class, 'approved']);
@@ -63,7 +64,7 @@ Route::middleware([
     Route::get('/judge/update-role/{id}/{role}', [JudgeController::class, 'updateRole'])->name('judge.updateRole');
 });
 
-Route::get('/register', function () {
-    return view('errors.404');
-});
+// Route::get('/register', function () {
+//     return view('errors.404');
+// });
 

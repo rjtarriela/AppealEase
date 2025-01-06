@@ -7,6 +7,7 @@ use App\Mail\NotifEmail;
 use App\Models\CaseModel;
 use App\Models\CasesSolved;
 use App\Models\Decision;
+use App\Models\History;
 use App\Models\Judge;
 use App\Models\Remark;
 use App\Models\Requirement;
@@ -312,6 +313,12 @@ class CaseController extends Controller
     }
 
     Mail::to($case->email_address)->send(new NotifEmail($data));
+
+    History::create([
+      'case_id' => $case->id, // Use case_number instead of case_id
+      'division' => $randomDivision,
+      'action' => 'Randomized Assignment',
+    ]);
 
     return redirect('/dashboard')->with('success', "Case Assigned to Division {$case->division} Successfully!");
     // ->with('randomDivision', $randomDivision);
