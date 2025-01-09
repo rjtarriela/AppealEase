@@ -296,6 +296,11 @@ class CaseController extends Controller
       'special_cases_solved' => 0,
     ]);
 
+    History::create([
+      'case_id' => $case->id, // Use case_number instead of case_id
+      'division' => $randomDivision,
+      'action' => 'Randomized Assignment',
+    ]);
 
     // para sa email
     $receiver = User::where('division', $randomDivision)->where('usertype', 'judge')->get();
@@ -314,11 +319,6 @@ class CaseController extends Controller
 
     Mail::to($case->email_address)->send(new NotifEmail($data));
 
-    History::create([
-      'case_id' => $case->id, // Use case_number instead of case_id
-      'division' => $randomDivision,
-      'action' => 'Randomized Assignment',
-    ]);
 
     return redirect('/dashboard')->with('success', "Case Assigned to Division {$case->division} Successfully!");
     // ->with('randomDivision', $randomDivision);

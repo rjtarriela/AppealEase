@@ -12,8 +12,14 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::get('/', function () {
     // return view('auth.login');
-    return view('welcome');
+    return view('welcome2');
 });
+
+// Route::get('/how-to-register', function (): { })
+
+// Create a routing for redirecting logout to login page
+
+Route::view('/how-to-register', 'welcome')->name('howToRegister');
 
 Route::middleware([
     'auth:sanctum',
